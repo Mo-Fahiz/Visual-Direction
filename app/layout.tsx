@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { DocsShell } from "@/components/layout/DocsShell";
-import { SiteFooter } from "@/components/layout/SiteFooter";
+import { ConditionalSiteFooter } from "@/components/layout/ConditionalSiteFooter";
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className="antialiased">
         <DocsShell>
           {children}
-          <SiteFooter />
+          <ConditionalSiteFooter />
         </DocsShell>
       </body>
     </html>

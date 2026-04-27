@@ -18,6 +18,38 @@
   --ds-caption-size: 12px;
   --ds-caption-lh: 16px;
   --ds-radius-btn: 10px;
+
+  /* Type size ramp (Skills/typography.mdc) — use with matching line for each step */
+  --font-10-size: 10px;
+  --font-10-line: 12px;
+  --font-12-size: 12px;
+  --font-12-line: 16px;
+  --font-14-size: 14px;
+  --font-14-line: 20px;
+  --font-16-size: 16px;
+  --font-16-line: 24px;
+  --font-18-size: 18px;
+  --font-18-line: 24px;
+  --font-20-size: 20px;
+  --font-20-line: 28px;
+  --font-24-size: 24px;
+  --font-24-line: 32px;
+  --font-30-size: 30px;
+  --font-30-line: 36px;
+  --font-36-size: 36px;
+  --font-36-line: 44px;
+  --font-48-size: 48px;
+  --font-48-line: 56px;
+  --font-54-size: 54px;
+  --font-54-line: 64px;
+  --font-60-size: 60px;
+  --font-60-line: 72px;
+  --font-72-size: 72px;
+  --font-72-line: 80px;
+  --font-96-size: 96px;
+  --font-96-line: 108px;
+  --font-128-size: 128px;
+  --font-128-line: 140px;
 }
 
 html {

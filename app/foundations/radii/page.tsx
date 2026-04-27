@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { radiusTokens } from "@/lib/radii-tokens";
 
 export const metadata: Metadata = {
   title: "Radii",
@@ -21,32 +22,19 @@ export default function RadiiPage() {
       </p>
 
       <div className="not-prose mt-4 grid gap-4 md:grid-cols-4">
-        {[
-          { name: "sm", value: "4px", use: "Nested insets" },
-          { name: "md", value: "6px", use: "Checkboxes" },
-          { name: "lg", value: "8px", use: "Options, cells" },
-          { name: "xl", value: "10px", use: "Tooltips" },
-          { name: "2xl", value: "12px", use: "General surfaces" },
-          { name: "3xl", value: "16px", use: "Tall containers" },
-          {
-            name: "4xl",
-            value: "20px",
-            use: "Cards, dialogs, menus",
-          },
-          { name: "full", value: "9999px", use: "Buttons, pills" },
-        ].map((r) => (
+        {radiusTokens.map((r) => (
           <div
             key={r.name}
             className="rounded-lg border border-border bg-white p-4 text-center"
           >
             <div
               className="mx-auto mb-3 h-12 w-12 bg-purple-600"
-              style={{ borderRadius: r.value }}
+              style={{ borderRadius: r.valueLabel }}
             />
             <p className="text-sm font-semibold text-foreground">
               --radius-{r.name}
             </p>
-            <code className="ds-caption font-mono">{r.value}</code>
+            <code className="ds-caption font-mono">{r.valueLabel}</code>
             <p className="ds-caption mt-2 text-muted">{r.use}</p>
           </div>
         ))}
