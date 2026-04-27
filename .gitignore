@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Local reference dumps (Carbon screenshots/HTML — not app source)
+dump/Webdump/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

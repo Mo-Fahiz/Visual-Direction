@@ -17,115 +17,30 @@ export default function PatternsPage() {
 
       <h2>Motion & Animation Patterns</h2>
       <p className="text-muted">
-        The system uses a small set of easing curves and keyframes applied
-        consistently across interactions.
+        Motion lives at the Foundation level — the canonical, replayable
+        renders for every easing curve, duration, and shared keyframe are on
+        the{" "}
+        <Link href="/foundations/motion" className="underline">
+          Motion Foundation
+        </Link>{" "}
+        page. This section calls out a few <em>composed</em> motion patterns
+        that show up across the product.
       </p>
 
-      <h3>Easing Curves</h3>
-      <div className="not-prose mt-4 space-y-4">
-        {[
-          {
-            name: "ease-out-quad",
-            curve: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-            use: "Standard exit",
-            duration: "150ms",
-          },
-          {
-            name: "ease-out-cubic",
-            curve: "cubic-bezier(0.215, 0.61, 0.355, 1)",
-            use: "Dropdown/modal enter",
-            duration: "200ms",
-          },
-          {
-            name: "ease-out-quart",
-            curve: "cubic-bezier(0.165, 0.84, 0.44, 1)",
-            use: "Strong deceleration",
-            duration: "300ms",
-          },
-          {
-            name: "ease-in-out-cubic",
-            curve: "cubic-bezier(0.645, 0.045, 0.355, 1)",
-            use: "On-screen movement",
-            duration: "250ms",
-          },
-        ].map((e) => (
-          <div
-            key={e.name}
-            className="rounded-lg border border-border bg-white p-4"
-          >
-            <p className="text-sm font-semibold text-foreground">{e.name}</p>
-            <code className="ds-caption mt-1 block font-mono text-[11px]">
-              {e.curve}
-            </code>
-            <div className="mt-3 flex items-center justify-between text-sm">
-              <span className="text-muted">{e.use}</span>
-              <span className="text-purple-600">{e.duration}</span>
-            </div>
-
-            {/* Visual easing demo */}
-            <div className="mt-4 h-16 rounded-lg border border-border bg-gray-50 p-2">
-              <div
-                className="h-3 w-3 rounded-full bg-purple-600"
-                style={{
-                  animation: `slideRight 2s ${e.curve} infinite`,
-                }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <style>{`
-        @keyframes slideRight {
-          0% { transform: translateX(0); }
-          50% { transform: translateX(calc(100% - 12px - 8px)); }
-          100% { transform: translateX(0); }
-        }
-      `}</style>
-
-      <h3>Keyframe Animations</h3>
-      <div className="not-prose mt-4 grid gap-4 md:grid-cols-2">
-        {[
-          {
-            name: "acko-spin",
-            desc: "Loading spinner",
-            keyframes:
-              "0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }",
-            duration: "600ms",
-          },
-          {
-            name: "acko-shake",
-            desc: "Error shake",
-            keyframes:
-              "0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); }",
-            duration: "300ms",
-          },
-          {
-            name: "acko-check-pop",
-            desc: "Success check",
-            keyframes:
-              "0% { opacity: 0; transform: scale(0.5); } 60% { opacity: 1; transform: scale(1.15); } 100% { opacity: 1; transform: scale(1); }",
-            duration: "300ms",
-          },
-          {
-            name: "acko-menu-enter",
-            desc: "Dropdown enter",
-            keyframes:
-              "from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); }",
-            duration: "150ms",
-          },
-        ].map((k) => (
-          <div key={k.name} className="rounded-lg border border-border bg-white p-4">
-            <p className="text-sm font-semibold text-foreground">{k.name}</p>
-            <p className="ds-caption mt-1 text-muted">{k.desc}</p>
-            <code className="ds-caption mt-2 block font-mono text-[10px]">
-              {k.keyframes.split("}")[0]}…
-            </code>
-            <div className="mt-3 flex items-center gap-2 text-sm">
-              <span className="text-purple-600">Duration: {k.duration}</span>
-            </div>
-          </div>
-        ))}
+      <div className="not-prose mt-4 rounded-xl border border-border bg-white p-5">
+        <p className="text-sm font-semibold text-foreground">
+          Looking for the canonical curves and keyframes?
+        </p>
+        <p className="ds-caption mt-2 text-muted">
+          Live, replayable demos for every easing token, duration, and
+          keyframe — plus reduced-motion and performance comparisons.
+        </p>
+        <Link
+          href="/foundations/motion"
+          className="ds-btn-outline mt-4 inline-flex"
+        >
+          Open Motion Foundation
+        </Link>
       </div>
 
       <h2 className="mt-12">Layout Patterns</h2>
@@ -333,18 +248,14 @@ export default function PatternsPage() {
         ))}
       </div>
 
-      <h2 className="mt-12">Related</h2>
+      <h2>Related</h2>
       <ul>
         <li>
-          <Link href="/ui-kit">UI Kit</Link> — colors, spacing, shadows, radii
+          <Link href="/foundations/motion">Motion Foundation</Link> — easing curves
+          and keyframes
         </li>
         <li>
-          <Link href="/foundations">Foundations</Link> — design tokens and
-          reference
-        </li>
-        <li>
-          <Link href="/visual-direction">Visual direction</Link> — imagery and
-          brand narrative
+          <Link href="/ui-kit">UI Kit</Link> — overview
         </li>
       </ul>
     </article>

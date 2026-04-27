@@ -244,3 +244,54 @@ body {
 .doc-prose a:hover {
   text-decoration-thickness: 2px;
 }
+
+/* ------------------------------------------------------------------------- */
+/* Doc component opt-out: .doc-prose ul/a rules above win over bare utilities */
+/* ------------------------------------------------------------------------- */
+
+.doc-prose ul.ds-page-tabs,
+.doc-prose .ds-page-tabs {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.doc-prose ul.ds-page-tabs > li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.doc-prose a.ds-page-tab {
+  color: inherit;
+  text-decoration: none;
+}
+
+.doc-prose a.ds-page-tab:hover,
+.doc-prose a.ds-page-tab:focus-visible {
+  text-decoration: none;
+}
+
+.doc-prose ul.ds-resource-grid {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.doc-prose ul.ds-resource-grid > li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.doc-prose a.ds-resource-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.doc-prose a.ds-resource-card:hover,
+.doc-prose a.ds-resource-card:focus,
+.doc-prose a.ds-resource-card:focus-visible {
+  text-decoration: none;
+  color: inherit;
+}

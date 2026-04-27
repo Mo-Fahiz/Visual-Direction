@@ -30,6 +30,10 @@ export const primaryNav: NavItem[] = [
     children: [
       { title: "Color", href: "/foundations/color" },
       { title: "Typography", href: "/foundations/typography" },
+      { title: "Spacing", href: "/foundations/spacing" },
+      { title: "Border Radii", href: "/foundations/radii" },
+      { title: "Shadows", href: "/foundations/shadows" },
+      { title: "Motion", href: "/foundations/motion" },
       { title: "Imagery", href: "/foundations/imagery" },
       { title: "Iconography", href: "/foundations/iconography" },
       { title: "Voice & tone", href: "/foundations/voice" },

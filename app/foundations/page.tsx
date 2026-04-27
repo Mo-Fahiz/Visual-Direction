@@ -17,8 +17,12 @@ export default function FoundationsIndexPage() {
 
       <ul className="not-prose space-y-3">
         {[
-          { href: "/foundations/color", title: "Color", desc: "Core purple, neutrals, semantic verticals, distribution band." },
+          { href: "/foundations/color", title: "Color", desc: "Primitives, semantic tokens, layering model, theming, contrast." },
           { href: "/foundations/typography", title: "Typography", desc: "Gotham for brand; Euclid Circular B for product." },
+          { href: "/foundations/spacing", title: "Spacing", desc: "Numeric scale for margins, padding, gaps, sizing." },
+          { href: "/foundations/radii", title: "Border Radii", desc: "Pills, cards, nested inset rule." },
+          { href: "/foundations/shadows", title: "Shadows", desc: "Elevation hierarchy and semantic aliases." },
+          { href: "/foundations/motion", title: "Motion", desc: "Easing curves, keyframes, and performance rules." },
           { href: "/foundations/imagery", title: "Imagery", desc: "Three modes and brief discipline for consistency." },
           { href: "/foundations/iconography", title: "Iconography", desc: "Stroke-rounded benchmark and usage." },
           { href: "/foundations/voice", title: "Voice & tone", desc: "How principles read in words." },

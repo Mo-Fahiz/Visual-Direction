@@ -11,7 +11,7 @@ npm run start  # serve production build
 npm run lint
 ```
 
-Open [http://localhost:4004](http://localhost:4004) after `npm run dev` (or `npm run start` after a build).
+Open [http://localhost:3800](http://localhost:3800) after `npm run dev` (or `npm run start` after a build).
 
 ## Structure
 
