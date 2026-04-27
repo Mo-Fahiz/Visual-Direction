@@ -1,0 +1,246 @@
+@import "./font-euclid.css";
+@import "tailwindcss";
+
+/* ACKO colors + typography (Euclid). Layout rhythm inspired by Davies portfolio template — not template colors. */
+:root {
+  --acko-cream: #fafaf8;
+  --acko-ink: #0a0a0a;
+  --acko-muted: #605f63;
+  --acko-border: #e0e0e1;
+  --acko-purple: #6841e6;
+  --acko-purple-soft: #f5f3ff;
+  --acko-purple-rgb: 104, 65, 230;
+  --background: var(--acko-cream);
+  --foreground: var(--acko-ink);
+  --accent: var(--acko-purple);
+  --sidebar: #ffffff;
+  /* Davies-style scale tokens (caption, radii) */
+  --ds-caption-size: 12px;
+  --ds-caption-lh: 16px;
+  --ds-radius-btn: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--acko-muted);
+  --color-border: var(--acko-border);
+  --color-sidebar: var(--sidebar);
+  --color-purple-soft: var(--acko-purple-soft);
+  --font-sans:
+    "EuclidCircular",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+/* —— Davies-inspired utilities (ACKO palette) —— */
+
+.ds-caption {
+  font-size: var(--ds-caption-size);
+  line-height: var(--ds-caption-lh);
+  letter-spacing: -0.01em;
+}
+
+.ds-nav-prefix {
+  font-size: 8px;
+  line-height: 12px;
+  font-weight: 500;
+  color: var(--acko-muted);
+  flex-shrink: 0;
+}
+
+.ds-display-hero {
+  font-size: clamp(52px, 11vw, 120px);
+  line-height: clamp(56px, 10vw, 108px);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  color: var(--acko-ink);
+}
+
+.ds-br-dot {
+  display: inline-flex;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--acko-purple);
+  box-shadow:
+    0 0 2px 1px rgba(var(--acko-purple-rgb), 0.2),
+    0 0 6px 4px rgba(var(--acko-purple-rgb), 0.15);
+  flex-shrink: 0;
+}
+
+.ds-has-dot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .ds-has-dot {
+    gap: 12px;
+  }
+}
+
+/* Outline CTA (tf-btn on light background) */
+.ds-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 40px;
+  padding-left: 23px;
+  padding-right: 23px;
+  border-radius: var(--ds-radius-btn);
+  font-weight: 500;
+  font-size: var(--ds-caption-size);
+  line-height: var(--ds-caption-lh);
+  letter-spacing: -0.01em;
+  border: 1px solid var(--acko-ink);
+  color: var(--acko-ink);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.3s ease;
+}
+
+.ds-btn-outline::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  top: calc(100% + 1px);
+  height: 100%;
+  border-radius: var(--ds-radius-btn);
+  background-color: var(--acko-ink);
+  z-index: -1;
+  transition: top 0.3s ease;
+}
+
+.ds-btn-outline:hover {
+  color: var(--acko-cream);
+}
+
+.ds-btn-outline:hover::before {
+  top: 0;
+}
+
+/* Filled primary (template .tf-btn.style-fill → ACKO purple) */
+.ds-btn-fill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 40px;
+  padding-left: 23px;
+  padding-right: 23px;
+  border-radius: var(--ds-radius-btn);
+  font-weight: 500;
+  font-size: var(--ds-caption-size);
+  line-height: var(--ds-caption-lh);
+  letter-spacing: -0.01em;
+  background-color: var(--acko-purple);
+  border: 1px solid var(--acko-purple);
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+}
+
+.ds-btn-fill:hover {
+  opacity: 0.92;
+}
+
+.ds-hero-tags {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.ds-hero-tags a {
+  font-size: var(--ds-caption-size);
+  line-height: var(--ds-caption-lh);
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--acko-muted);
+  transition: color 0.2s ease;
+}
+
+.ds-hero-tags a:hover {
+  color: var(--acko-purple);
+}
+
+.ds-muted-block {
+  color: #333333;
+  opacity: 0.85;
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 28rem;
+}
+
+/* Prose-ish doc content */
+.doc-prose h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: clamp(34px, 4.5vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.doc-prose h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--acko-ink);
+}
+
+.doc-prose h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--acko-ink);
+}
+
+.doc-prose p,
+.doc-prose li {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #333333;
+}
+
+.doc-prose ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.doc-prose a {
+  color: var(--acko-purple);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.doc-prose a:hover {
+  text-decoration-thickness: 2px;
+}
