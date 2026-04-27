@@ -7,6 +7,18 @@ export type Principle = {
   precisionVsWarmth: { precision: string; warmth: string };
   doDont: { do: string[]; dont: string[] };
   reviewPrompts: string[];
+  /** Hero photographic brief for this principle. */
+  hero: {
+    description: string;
+    brief: string;
+    mood: string[];
+    /** Deep brand-aligned background colour for the placeholder. */
+    color: string;
+  };
+  /** One-line summary printed on the principles index card. */
+  tagline: string;
+  /** Caption shown under the rendered visual Don't / Do panels. */
+  visualCaptions: { not: string; yes: string };
 };
 
 export const principles: Principle[] = [
@@ -44,6 +56,18 @@ export const principles: Principle[] = [
       "Is anything material hidden behind interaction or secondary pages?",
       "Does rejection copy pass the “respect + clarity” test?",
     ],
+    tagline: "Transparent. Plain. Understood.",
+    hero: {
+      description: "Customer reading policy details in natural setting",
+      brief:
+        "Couple sitting on sofa reading phone together, ACKO policy visible on screen. Living room of a middle-class Indian apartment. Evening lamp light. The mood is trust and understanding. Shot at eye level, not from above.",
+      mood: ["evening lamp", "couple reading", "eye level", "trust"],
+      color: "#0C2E2A",
+    },
+    visualCaptions: {
+      not: "Hidden asterisks, vague disclaimers, gradient-bestseller noise — clarity is sacrificed for conversion theatre.",
+      yes: "Plain price, plain inclusions, no asterisks. The customer can explain this back to a friend.",
+    },
   },
   {
     slug: "effortless-by-default",
@@ -78,6 +102,18 @@ export const principles: Principle[] = [
       "What happens on slow or failed network—do we guide or abandon?",
       "Where might a stressed user get stuck at 11pm?",
     ],
+    tagline: "Simple. Not simplified.",
+    hero: {
+      description: "Three-step purchase in a real moment",
+      brief:
+        "Young professional standing next to their car, phone in hand, completing purchase. The car number plate is visible. Urban Indian residential street. Quick, casual moment — not a photoshoot. Bright daylight.",
+      mood: ["quick moment", "daylight", "casual", "urban street"],
+      color: "#0C1A3D",
+    },
+    visualCaptions: {
+      not: "Eight required fields on step 1 of 7 — the form punishes the customer for choosing us.",
+      yes: "Ask for the one thing only the customer knows, fetch the rest, confirm with calm certainty.",
+    },
   },
   {
     slug: "present-when-it-matters",
@@ -112,6 +148,18 @@ export const principles: Principle[] = [
       "Does this touchpoint acknowledge where the customer is in the lifecycle?",
       "Are we present without being noisy?",
     ],
+    tagline: "Calm. Human. There.",
+    hero: {
+      description: "Support moment during a claim",
+      brief:
+        "Woman on a phone call in a garage or hospital waiting area, expression showing relief. Soft natural light. The phone call is the story — someone is helping. Warm, documentary-style. Not staged.",
+      mood: ["relief", "phone call", "garage/hospital", "documentary"],
+      color: "#2A1A0A",
+    },
+    visualCaptions: {
+      not: "A faceless ticket ID and a 7–14 day SLA. The customer feels processed, not supported.",
+      yes: "Named human, visible next step, time-bound commitment. The brand stays in the room.",
+    },
   },
   {
     slug: "respectful-of-time",
@@ -146,6 +194,18 @@ export const principles: Principle[] = [
       "Would we tolerate this flow if we were late to a hospital?",
       "Is every upsell defensible as helpful—not extractive?",
     ],
+    tagline: "Context. Clarity. Zero friction.",
+    hero: {
+      description: "Morning routine with one calm notification",
+      brief:
+        "Phone on wooden breakfast table next to chai and newspaper. Screen shows one ACKO renewal card. Morning light from a window. Indian kitchen/dining area. The feeling is calm start to the day.",
+      mood: ["morning chai", "one notification", "wooden table", "calm"],
+      color: "#1A0F2E",
+    },
+    visualCaptions: {
+      not: "Three competing banners shouting for attention before the customer even sees their policy.",
+      yes: "One renewal card, savings called out, primary action obvious. Respect the user's morning.",
+    },
   },
 ];
 

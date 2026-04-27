@@ -27,19 +27,33 @@ export default function PrinciplesOverviewPage() {
         until then, treat these four as complete.
       </p>
 
-      <ul className="not-prose mt-6 space-y-4">
-        {principles.map((p) => (
+      <ul className="not-prose mt-6 grid gap-4 md:grid-cols-2">
+        {principles.map((p, i) => (
           <li
             key={p.slug}
-            className="rounded-xl border border-border bg-white p-5 shadow-sm"
+            className="flex flex-col rounded-xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-[1px] hover:shadow"
           >
+            <span className="ds-caption font-mono text-muted">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <p className="ds-caption mt-1 font-medium uppercase tracking-[0.1em] text-accent">
+              {p.tagline}
+            </p>
             <Link
               href={`/principles/${p.slug}`}
-              className="text-lg font-semibold text-accent hover:underline"
+              className="mt-2 text-xl font-semibold leading-snug tracking-tight text-foreground hover:text-accent"
             >
               {p.title}
             </Link>
-            <p className="mt-2 text-sm leading-relaxed text-[#333]">{p.definition}</p>
+            <p className="mt-3 text-sm leading-relaxed text-[#333]">
+              {p.definition}
+            </p>
+            <Link
+              href={`/principles/${p.slug}`}
+              className="ds-caption mt-4 font-medium text-accent hover:underline"
+            >
+              See it in product →
+            </Link>
           </li>
         ))}
       </ul>
