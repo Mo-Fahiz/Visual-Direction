@@ -186,6 +186,25 @@ export default function UIKitPage() {
         </li>
       </ul>
 
+      <h2 className="mt-12">Component Library</h2>
+      <p>
+        The production component library is being built in parallel and lives in a
+        separate repository. It consumes the tokens defined here and implements
+        them as React components with Tailwind CSS.
+      </p>
+      <ul className="not-prose mt-3 flex flex-wrap gap-3">
+        <li>
+          <a
+            href="https://github.com/rahulpramod-stack/DS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline"
+          >
+            Component library repo →
+          </a>
+        </li>
+      </ul>
+
       <h2 className="mt-12">Next Steps</h2>
       <ul>
         <li>
@@ -193,8 +212,8 @@ export default function UIKitPage() {
           decision
         </li>
         <li>
-          <Link href="/visual-direction">Visual Direction</Link> — precision and warmth
-          modes
+          <Link href="/visual-direction">Visual Direction</Link> — brand look and
+          feel
         </li>
         <li>
           <Link href="/patterns">Patterns</Link> — recurring layouts and interactions

@@ -15,7 +15,7 @@ export function PageHeader({
   eyebrow,
 }: PageHeaderProps) {
   return (
-    <header className="mb-10 border-b border-border pb-8">
+    <header className="mb-14 border-b border-border/60 pb-10">
       {eyebrow ? (
         <p className="ds-has-dot ds-caption mb-4 font-medium uppercase tracking-[0.1em] text-muted">
           <span className="ds-br-dot" aria-hidden />

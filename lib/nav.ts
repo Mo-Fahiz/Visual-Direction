@@ -37,6 +37,18 @@ export const primaryNav: NavItem[] = [
       { title: "Imagery", href: "/foundations/imagery" },
       { title: "Iconography", href: "/foundations/iconography" },
       { title: "Voice & tone", href: "/foundations/voice" },
+      { title: "Accessibility", href: "/foundations/accessibility" },
+      {
+        title: "Asset creation",
+        href: "/foundations/asset-creation",
+        children: [
+          { title: "Image generation", href: "/foundations/asset-creation/image-generation" },
+          { title: "Scene library", href: "/foundations/asset-creation/scenes" },
+          { title: "Video direction", href: "/foundations/asset-creation/video" },
+          { title: "Templates", href: "/foundations/asset-creation/templates" },
+          { title: "AI integration", href: "/foundations/asset-creation/ai-integration" },
+        ],
+      },
     ],
   },
   { title: "Brand story", href: "/brand-story", index: "05" },

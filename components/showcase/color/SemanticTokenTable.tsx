@@ -11,7 +11,7 @@ type Props = {
  */
 export function SemanticTokenTable({ group }: Props) {
   return (
-    <div className="not-prose -mx-4 mb-6 overflow-x-auto md:mx-0">
+    <div className="not-prose mb-6 w-full min-w-0 overflow-x-auto">
       <table className="w-full border-collapse text-left text-sm">
         <thead>
           <tr className="border-y border-border bg-white/50">

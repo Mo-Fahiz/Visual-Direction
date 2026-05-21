@@ -16,7 +16,7 @@ export function MainColumn({ children }: { children: React.ReactNode }) {
       className={cn(
         isHome
           ? "w-full max-w-none min-h-0 flex-1 px-0 py-0"
-          : "mx-auto max-w-4xl px-4 py-10 md:px-10 md:py-16"
+          : "mx-auto w-full min-w-0 max-w-4xl px-4 py-10 sm:px-6 md:px-10 md:py-16"
       )}
     >
       {children}

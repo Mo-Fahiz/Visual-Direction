@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { FadeIn } from "./FadeIn";
 
 type Props = {
   id: string;
@@ -11,17 +12,17 @@ type Props = {
 };
 
 /**
- * Carbon-style section header with permalink anchor + spacing rhythm.
- * Use as the top of every section/sub-section across docs pages.
+ * Section header with permalink anchor + spacing rhythm.
+ * Level-2 sections get a subtle scroll-triggered fade-in.
  */
 export function Section({ id, title, level = 2, description, children }: Props) {
   const Heading = level === 2 ? "h2" : "h3";
   const sizeClasses =
     level === 2
-      ? "text-[1.5rem] font-semibold tracking-[-0.02em] mt-12 mb-3"
-      : "text-[1.125rem] font-semibold tracking-[-0.01em] mt-8 mb-2.5";
+      ? "text-[1.5rem] font-semibold tracking-[-0.02em] mt-16 mb-3"
+      : "text-[1.125rem] font-semibold tracking-[-0.01em] mt-10 mb-2.5";
 
-  return (
+  const content = (
     <section className="not-prose">
       <Heading
         id={id}
@@ -37,11 +38,17 @@ export function Section({ id, title, level = 2, description, children }: Props) 
         {title}
       </Heading>
       {description ? (
-        <p className="mb-4 max-w-3xl text-[0.9375rem] leading-relaxed text-muted">
+        <p className="mb-5 max-w-3xl text-[0.9375rem] leading-relaxed text-muted">
           {description}
         </p>
       ) : null}
       {children}
     </section>
   );
+
+  // Only animate top-level sections
+  if (level === 2) {
+    return <FadeIn>{content}</FadeIn>;
+  }
+  return content;
 }

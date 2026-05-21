@@ -32,9 +32,9 @@ export function DoDontVisual({
   yesCaption,
 }: Props) {
   return (
-    <div className="not-prose mt-8 grid gap-6 md:grid-cols-2">
+    <div className="not-prose mt-8 grid min-w-0 gap-6 md:grid-cols-2">
       {/* NOT THIS */}
-      <div>
+      <div className="min-w-0">
         <div className="mb-3 flex items-center gap-2">
           <span
             aria-hidden
@@ -58,7 +58,7 @@ export function DoDontVisual({
           </span>
         </div>
         <div
-          className="flex min-h-[380px] items-center justify-center rounded-[20px] p-8"
+          className="flex min-h-[260px] items-center justify-center rounded-[20px] p-4 sm:min-h-[320px] sm:p-6 md:min-h-[380px] md:p-8"
           style={{
             background: palette.G100,
             border: `1px solid ${palette.G200}`,
@@ -72,7 +72,7 @@ export function DoDontVisual({
       </div>
 
       {/* THIS */}
-      <div>
+      <div className="min-w-0">
         <div className="mb-3 flex items-center gap-2">
           <span
             aria-hidden
@@ -98,7 +98,7 @@ export function DoDontVisual({
           </span>
         </div>
         <div
-          className="flex min-h-[380px] items-center justify-center rounded-[20px] p-8"
+          className="flex min-h-[260px] items-center justify-center rounded-[20px] p-4 sm:min-h-[320px] sm:p-6 md:min-h-[380px] md:p-8"
           style={{
             background: accentBg,
             border: `1px solid ${accentSoft}`,

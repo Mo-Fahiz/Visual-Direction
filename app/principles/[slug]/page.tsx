@@ -56,7 +56,7 @@ export default async function PrincipleDetailPage({ params }: Props) {
         lastUpdated="April 27, 2026"
       />
 
-      <div className="not-prose mt-2">
+      <div className="not-prose mt-2 w-full min-w-0">
         <MockFrame
           aspect="21/9"
           description={p.hero.description}
@@ -76,12 +76,12 @@ export default async function PrincipleDetailPage({ params }: Props) {
       </section>
 
       <section>
-        <h2>Precision vs warmth</h2>
+        <h2>In context</h2>
         <p>
-          <strong>Precision:</strong> {p.precisionVsWarmth.precision}
+          <strong>Product:</strong> {p.inContext.product}
         </p>
         <p>
-          <strong>Warmth:</strong> {p.precisionVsWarmth.warmth}
+          <strong>Marketing:</strong> {p.inContext.marketing}
         </p>
       </section>
 

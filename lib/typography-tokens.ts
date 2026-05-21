@@ -11,25 +11,27 @@ export type SizeStep = {
   tokenLine: string;
   tailwindSize: string;
   tailwindLine: string;
+  /** Tier 1 = product + display (covers all semantic aliases). Tier 2 = campaign/marketing only. */
+  tier: 1 | 2;
 };
 
 /** 15-step size ramp (portable across platforms). */
 export const sizeRamp: SizeStep[] = [
-  { step: 1, sizePx: 10, linePx: 12, tokenSize: "--font-10-size", tokenLine: "--font-10-line", tailwindSize: "text-[10px]", tailwindLine: "leading-[12px]" },
-  { step: 2, sizePx: 12, linePx: 16, tokenSize: "--font-12-size", tokenLine: "--font-12-line", tailwindSize: "text-xs", tailwindLine: "leading-[16px]" },
-  { step: 3, sizePx: 14, linePx: 20, tokenSize: "--font-14-size", tokenLine: "--font-14-line", tailwindSize: "text-sm", tailwindLine: "leading-[20px]" },
-  { step: 4, sizePx: 16, linePx: 24, tokenSize: "--font-16-size", tokenLine: "--font-16-line", tailwindSize: "text-base", tailwindLine: "leading-[24px]" },
-  { step: 5, sizePx: 18, linePx: 24, tokenSize: "--font-18-size", tokenLine: "--font-18-line", tailwindSize: "text-lg", tailwindLine: "leading-[24px]" },
-  { step: 6, sizePx: 20, linePx: 28, tokenSize: "--font-20-size", tokenLine: "--font-20-line", tailwindSize: "text-xl", tailwindLine: "leading-[28px]" },
-  { step: 7, sizePx: 24, linePx: 32, tokenSize: "--font-24-size", tokenLine: "--font-24-line", tailwindSize: "text-2xl", tailwindLine: "leading-[32px]" },
-  { step: 8, sizePx: 30, linePx: 36, tokenSize: "--font-30-size", tokenLine: "--font-30-line", tailwindSize: "text-[30px]", tailwindLine: "leading-[36px]" },
-  { step: 9, sizePx: 36, linePx: 44, tokenSize: "--font-36-size", tokenLine: "--font-36-line", tailwindSize: "text-[36px]", tailwindLine: "leading-[44px]" },
-  { step: 10, sizePx: 48, linePx: 56, tokenSize: "--font-48-size", tokenLine: "--font-48-line", tailwindSize: "text-[48px]", tailwindLine: "leading-[56px]" },
-  { step: 11, sizePx: 54, linePx: 64, tokenSize: "--font-54-size", tokenLine: "--font-54-line", tailwindSize: "text-[54px]", tailwindLine: "leading-[64px]" },
-  { step: 12, sizePx: 60, linePx: 72, tokenSize: "--font-60-size", tokenLine: "--font-60-line", tailwindSize: "text-[60px]", tailwindLine: "leading-[72px]" },
-  { step: 13, sizePx: 72, linePx: 80, tokenSize: "--font-72-size", tokenLine: "--font-72-line", tailwindSize: "text-[72px]", tailwindLine: "leading-[80px]" },
-  { step: 14, sizePx: 96, linePx: 108, tokenSize: "--font-96-size", tokenLine: "--font-96-line", tailwindSize: "text-[96px]", tailwindLine: "leading-[108px]" },
-  { step: 15, sizePx: 128, linePx: 140, tokenSize: "--font-128-size", tokenLine: "--font-128-line", tailwindSize: "text-[128px]", tailwindLine: "leading-[140px]" },
+  { step: 1, sizePx: 10, linePx: 12, tokenSize: "--font-10-size", tokenLine: "--font-10-line", tailwindSize: "text-[10px]", tailwindLine: "leading-[12px]", tier: 1 },
+  { step: 2, sizePx: 12, linePx: 16, tokenSize: "--font-12-size", tokenLine: "--font-12-line", tailwindSize: "text-xs", tailwindLine: "leading-[16px]", tier: 1 },
+  { step: 3, sizePx: 14, linePx: 20, tokenSize: "--font-14-size", tokenLine: "--font-14-line", tailwindSize: "text-sm", tailwindLine: "leading-[20px]", tier: 1 },
+  { step: 4, sizePx: 16, linePx: 24, tokenSize: "--font-16-size", tokenLine: "--font-16-line", tailwindSize: "text-base", tailwindLine: "leading-[24px]", tier: 1 },
+  { step: 5, sizePx: 18, linePx: 24, tokenSize: "--font-18-size", tokenLine: "--font-18-line", tailwindSize: "text-lg", tailwindLine: "leading-[24px]", tier: 1 },
+  { step: 6, sizePx: 20, linePx: 28, tokenSize: "--font-20-size", tokenLine: "--font-20-line", tailwindSize: "text-xl", tailwindLine: "leading-[28px]", tier: 1 },
+  { step: 7, sizePx: 24, linePx: 32, tokenSize: "--font-24-size", tokenLine: "--font-24-line", tailwindSize: "text-2xl", tailwindLine: "leading-[32px]", tier: 1 },
+  { step: 8, sizePx: 30, linePx: 36, tokenSize: "--font-30-size", tokenLine: "--font-30-line", tailwindSize: "text-[30px]", tailwindLine: "leading-[36px]", tier: 1 },
+  { step: 9, sizePx: 36, linePx: 44, tokenSize: "--font-36-size", tokenLine: "--font-36-line", tailwindSize: "text-[36px]", tailwindLine: "leading-[44px]", tier: 1 },
+  { step: 10, sizePx: 48, linePx: 56, tokenSize: "--font-48-size", tokenLine: "--font-48-line", tailwindSize: "text-[48px]", tailwindLine: "leading-[56px]", tier: 1 },
+  { step: 11, sizePx: 54, linePx: 64, tokenSize: "--font-54-size", tokenLine: "--font-54-line", tailwindSize: "text-[54px]", tailwindLine: "leading-[64px]", tier: 2 },
+  { step: 12, sizePx: 60, linePx: 72, tokenSize: "--font-60-size", tokenLine: "--font-60-line", tailwindSize: "text-[60px]", tailwindLine: "leading-[72px]", tier: 1 },
+  { step: 13, sizePx: 72, linePx: 80, tokenSize: "--font-72-size", tokenLine: "--font-72-line", tailwindSize: "text-[72px]", tailwindLine: "leading-[80px]", tier: 1 },
+  { step: 14, sizePx: 96, linePx: 108, tokenSize: "--font-96-size", tokenLine: "--font-96-line", tailwindSize: "text-[96px]", tailwindLine: "leading-[108px]", tier: 2 },
+  { step: 15, sizePx: 128, linePx: 140, tokenSize: "--font-128-size", tokenLine: "--font-128-line", tailwindSize: "text-[128px]", tailwindLine: "leading-[140px]", tier: 2 },
 ];
 
 export type SemanticTypeStyle = {
@@ -52,7 +54,7 @@ export type SemanticTypeStyle = {
 export const semanticTypeStyles: SemanticTypeStyle[] = [
   { id: "display-xl", name: "display-xl", group: "Display", tokenBase: "--font-display-xl", description: "Largest marketing / hero display.", sizePx: 72, linePx: 80, letterSpacingPx: -2, defaultWeight: 700, weightLabel: "Bold 700", className: "text-[72px] leading-[80px] font-bold tracking-[-0.02em]", sample: "Insurance that respects you" },
   { id: "display-lg", name: "display-lg", group: "Display", tokenBase: "--font-display-lg", description: "Large display, campaign headlines.", sizePx: 60, linePx: 72, letterSpacingPx: -1.5, defaultWeight: 700, weightLabel: "Bold 700", className: "text-[60px] leading-[72px] font-bold tracking-[-0.015em]", sample: "Clear over clever" },
-  { id: "display-md", name: "display-md", group: "Display", tokenBase: "--font-display-md", description: "Section heroes, key moments.", sizePx: 48, linePx: 56, letterSpacingPx: -1, defaultWeight: 700, weightLabel: "Bold 700", className: "text-[48px] leading-[56px] font-bold tracking-[-0.01em]", sample: "Grounded warmth" },
+  { id: "display-md", name: "display-md", group: "Display", tokenBase: "--font-display-md", description: "Section heroes, key moments.", sizePx: 48, linePx: 56, letterSpacingPx: -1, defaultWeight: 700, weightLabel: "Bold 700", className: "text-[48px] leading-[56px] font-bold tracking-[-0.01em]", sample: "Clear & human" },
   { id: "display-sm", name: "display-sm", group: "Display", tokenBase: "--font-display-sm", description: "Smaller display, sub-hero.", sizePx: 36, linePx: 44, letterSpacingPx: -0.5, defaultWeight: 500, weightLabel: "Medium 500", className: "text-[36px] leading-[44px] font-medium tracking-[-0.005em]", sample: "Effortless by default" },
   { id: "heading-xl", name: "heading-xl", group: "Heading", tokenBase: "--font-heading-xl", description: "Page title, major section.", sizePx: 30, linePx: 36, letterSpacingPx: -0.5, defaultWeight: 500, weightLabel: "Medium 500", className: "text-[30px] leading-[36px] font-medium tracking-[-0.005em]", sample: "Policy details" },
   { id: "heading-lg", name: "heading-lg", group: "Heading", tokenBase: "--font-heading-lg", description: "Section headers, card titles.", sizePx: 24, linePx: 32, letterSpacingPx: -0.3, defaultWeight: 500, weightLabel: "Medium 500", className: "text-2xl font-medium leading-[32px] tracking-[-0.003em]", sample: "What's covered" },
@@ -73,8 +75,19 @@ export const styleVariantRows = [
   { name: "medium", weight: 500, italic: false, underline: false, tailwind: "font-medium" },
   { name: "bold", weight: 700, italic: false, underline: false, tailwind: "font-bold" },
   { name: "italic", weight: 400, italic: true, underline: false, tailwind: "font-normal italic" },
-  { name: "medium-italic", weight: 500, italic: true, underline: false, tailwind: "font-medium italic" },
 ] as const;
+
+export type SanctionedOverride = {
+  baseStyle: string;
+  override: string;
+  useCase: string;
+};
+
+export const sanctionedOverrides: SanctionedOverride[] = [
+  { baseStyle: "Body MD / LG / SM", override: "Medium (500)", useCase: "Inline emphasis in body text" },
+  { baseStyle: "Body SM", override: "Italic (400)", useCase: "Legal references, policy clause citations" },
+  { baseStyle: "Heading SM / MD", override: "Bold (700)", useCase: "Data-dense tables where scanning speed matters" },
+];
 
 export const textColorIntents = [
   { value: "primary", token: "--color-text-primary", use: "Headings, main content" },

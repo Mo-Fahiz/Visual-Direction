@@ -49,12 +49,12 @@ export default function ImageryPage() {
 
       <DoDont
         doItems={[
-          "Match imagery mode to journey (precision vs warmth).",
+          "Match imagery mode to the moment in the customer journey.",
           "Show diversity and real Indian contexts authentically.",
           "Keep product shots legible at mobile sizes.",
         ]}
         dontItems={[
-          "Stock that contradicts the warmth/precision story.",
+          "Stock that contradicts the brand's visual direction.",
           "Busy scenes behind critical UI or copy.",
         ]}
       />

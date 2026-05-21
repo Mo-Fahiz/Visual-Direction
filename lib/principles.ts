@@ -4,7 +4,7 @@ export type Principle = {
   shortTitle: string;
   definition: string;
   signals: string[];
-  precisionVsWarmth: { precision: string; warmth: string };
+  inContext: { product: string; marketing: string };
   doDont: { do: string[]; dont: string[] };
   reviewPrompts: string[];
   /** Hero photographic brief for this principle. */
@@ -33,11 +33,9 @@ export const principles: Principle[] = [
       "Upfront eligibility, exclusions, and next steps—no surprise footnotes.",
       "Rejection and edge-case states include a clear reason and what the customer can do next.",
     ],
-    precisionVsWarmth: {
-      precision:
-        "Compare and checkout: scannable tables, explicit prices/coverage deltas, tooltips for definitions—not punchy slogans that obscure terms.",
-      warmth:
-        "Claims/support: still plain language, but warmer framing (“Here’s what happened” / “Here’s what you can do”) without hiding facts.",
+    inContext: {
+      product: "Use the simplest correct label. No jargon in UI — explain inline if legally required.",
+      marketing: "Headlines can be clever if the meaning is instant. Body copy stays plain.",
     },
     doDont: {
       do: [
@@ -47,14 +45,14 @@ export const principles: Principle[] = [
       ],
       dont: [
         "Clever wordplay that obscures coverage or risk.",
-        "Buried limitations behind “Learn more” when the decision depends on them.",
+        'Buried limitations behind "Learn more" when the decision depends on them.',
         "Blaming tone in errors or rejections.",
       ],
     },
     reviewPrompts: [
       "Would a first-time buyer explain this sentence back to us correctly?",
       "Is anything material hidden behind interaction or secondary pages?",
-      "Does rejection copy pass the “respect + clarity” test?",
+      'Does rejection copy pass the "respect + clarity" test?',
     ],
     tagline: "Transparent. Plain. Understood.",
     hero: {
@@ -80,11 +78,9 @@ export const principles: Principle[] = [
       "Predictable navigation and recovery paths (back, save state, resume).",
       "Performance and perceived performance: skeletons, optimistic UI where safe, clear timeouts.",
     ],
-    precisionVsWarmth: {
-      precision:
-        "Shop/compare flows: tight information hierarchy, minimal steps to a decision, comparison tools that feel instant.",
-      warmth:
-        "Support/claims: hand-holding where stress is high—clear status, human-readable timelines, proactive updates.",
+    inContext: {
+      product: "Pre-fill known data, reduce steps, surface the right action.",
+      marketing: "One CTA per section. Remove friction between interest and action.",
     },
     doDont: {
       do: [
@@ -94,7 +90,7 @@ export const principles: Principle[] = [
       ],
       dont: [
         "Dead ends, redundant forms, or mystery loading with no feedback.",
-        "Oversimplified copy that hides real trade-offs (that’s not effortless—it’s risky).",
+        "Oversimplified copy that hides real trade-offs (that's not effortless—it's risky).",
       ],
     },
     reviewPrompts: [
@@ -120,23 +116,21 @@ export const principles: Principle[] = [
     title: "Present when it matters",
     shortTitle: "Present when it matters",
     definition:
-      "ACKO doesn’t disappear after the sale. Whether it’s a hospital visit, a claim, or an emergency, the customer feels supported and cared for.",
+      "ACKO doesn't disappear after the sale. Whether it's a hospital visit, a claim, or an emergency, the customer feels supported and cared for.",
     signals: [
       "Lifecycle-aware messaging: post-purchase, claim, renewal, and crisis moments get dedicated patterns.",
       "Proactive status and reminders where appropriate—not noise.",
-      "Human escalation paths visible when automation isn’t enough.",
+      "Human escalation paths visible when automation isn't enough.",
     ],
-    precisionVsWarmth: {
-      precision:
-        "Pre-purchase: presence through clarity and availability of help—not hand-holding noise.",
-      warmth:
-        "Claims/emergencies: higher-touch tone, reassurance, timelines, and easy access to support.",
+    inContext: {
+      product: "Status updates at every step. Proactive notifications. Never leave the user guessing.",
+      marketing: "Timely campaigns — renewal reminders, seasonal relevance, lifecycle triggers.",
     },
     doDont: {
       do: [
         "Celebrate the relationship after the sale with useful checklists and contacts.",
         "Design empty and error states in claims as carefully as happy paths.",
-        "Make “talk to a human” discoverable in high-anxiety flows.",
+        'Make "talk to a human" discoverable in high-anxiety flows.',
       ],
       dont: [
         "Ghosting after payment—support and claims should feel like the same brand.",
@@ -169,20 +163,18 @@ export const principles: Principle[] = [
       "No forced purchases, no overselling, and no repetitive tasks. The product remembers context, shows the right info at the right time, and saves you time.",
     signals: [
       "Smart defaults and pre-filled data from prior steps or policies.",
-      "Skip irrelevant branches; don’t force linear wizards when context allows parallel paths.",
-      "Cross-sell only when additive to the user’s goal, timed appropriately.",
+      "Skip irrelevant branches; don't force linear wizards when context allows parallel paths.",
+      "Cross-sell only when additive to the user's goal, timed appropriately.",
     ],
-    precisionVsWarmth: {
-      precision:
-        "Compare/buy: density where experts want speed; shortcuts for returning users.",
-      warmth:
-        "Support: don’t rush vulnerability—but still avoid repeating questions we already have answers to.",
+    inContext: {
+      product: "No unnecessary screens, no repeated questions, no waiting without explanation.",
+      marketing: "Respect inbox and attention. Every email earns the next open.",
     },
     doDont: {
       do: [
-        "Remember what we know; ask once, reuse everywhere it’s valid.",
+        "Remember what we know; ask once, reuse everywhere it's valid.",
         "Batch tasks (documents, uploads) with clear progress.",
-        "Offer “skip for now” only when it’s truly safe for the customer.",
+        'Offer "skip for now" only when it\'s truly safe for the customer.',
       ],
       dont: [
         "Dark patterns, fake urgency, or churning modals.",

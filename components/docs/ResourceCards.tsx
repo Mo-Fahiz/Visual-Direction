@@ -20,7 +20,7 @@ type Props = {
 export function ResourceCards({ resources }: Props) {
   return (
     <ul
-      className="ds-resource-grid not-prose mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      className="ds-resource-grid not-prose mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
     >
       {resources.map((r) => {
         const isExternal = r.external ?? r.href.startsWith("http");
@@ -32,7 +32,7 @@ export function ResourceCards({ resources }: Props) {
               {...(isExternal
                 ? { target: "_blank", rel: "noreferrer" }
                 : {})}
-              className="ds-resource-card group flex h-full min-h-[7.5rem] flex-col rounded-xl border border-border bg-white p-5 no-underline shadow-sm transition-[border-color,box-shadow,transform] duration-150 outline-none hover:-translate-y-0.5 hover:border-[var(--acko-purple)] hover:shadow-md focus-visible:ring-2 focus-visible:ring-[var(--acko-purple)] focus-visible:ring-offset-2"
+              className="ds-resource-card group flex h-full min-h-[7.5rem] flex-col rounded-2xl border border-border/60 bg-white p-6 no-underline shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow,transform] duration-200 outline-none hover:-translate-y-0.5 hover:border-[var(--acko-purple)] hover:shadow-md focus-visible:ring-2 focus-visible:ring-[var(--acko-purple)] focus-visible:ring-offset-2"
             >
               <div className="flex grow flex-col gap-1">
                 <p className="text-base font-semibold tracking-tight text-foreground">

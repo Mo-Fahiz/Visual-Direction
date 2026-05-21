@@ -73,7 +73,7 @@ export function PageTabs({ tabs }: Props) {
   return (
     <nav
       aria-label="Page sections"
-      className="not-prose -mx-4 mb-10 w-full max-w-full md:mx-0"
+      className="not-prose mb-10 w-full min-w-0 max-w-full"
     >
       <Tabs
         value={value}

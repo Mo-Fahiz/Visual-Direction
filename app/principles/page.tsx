@@ -16,7 +16,7 @@ export default function PrinciplesOverviewPage() {
         lastUpdated="April 27, 2026"
       />
 
-      <blockquote className="not-prose my-8 border-l-4 border-accent bg-white py-4 pl-6 pr-4 text-base italic leading-relaxed text-[#333] shadow-sm">
+      <blockquote className="not-prose my-8 border-l-4 border-accent bg-white px-6 py-4 text-base italic leading-relaxed text-[#333] shadow-sm">
         If ACKO is doing everything right, what should it feel like to the customer?
       </blockquote>
 
@@ -27,11 +27,11 @@ export default function PrinciplesOverviewPage() {
         until then, treat these four as complete.
       </p>
 
-      <ul className="not-prose mt-6 grid gap-4 md:grid-cols-2">
+      <ul className="not-prose mt-6 grid min-w-0 gap-4 md:grid-cols-2">
         {principles.map((p, i) => (
           <li
             key={p.slug}
-            className="flex flex-col rounded-xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-[1px] hover:shadow"
+            className="flex min-w-0 flex-col rounded-xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-[1px] hover:shadow"
           >
             <span className="ds-caption font-mono text-muted">
               {String(i + 1).padStart(2, "0")}
@@ -61,7 +61,7 @@ export default function PrinciplesOverviewPage() {
       <h2>Related</h2>
       <ul>
         <li>
-          <Link href="/visual-direction">Visual direction</Link> — precision vs warmth.
+          <Link href="/visual-direction">Visual direction</Link> — brand look and feel.
         </li>
         <li>
           <Link href="/foundations">Foundations</Link> — how principles show up in
