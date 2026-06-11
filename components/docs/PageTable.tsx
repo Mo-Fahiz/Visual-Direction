@@ -16,7 +16,7 @@ type Props = {
  */
 export function PageTable({ headers, rows, colWidths, caption }: Props) {
   return (
-    <div className="not-prose -mx-4 mb-6 overflow-x-auto md:mx-0">
+    <div className="not-prose -mx-4 mb-8 overflow-x-auto rounded-2xl border border-border/50 md:mx-0">
       <table className="w-full border-collapse text-left text-sm">
         {caption ? (
           <caption className="mb-2 text-left text-xs uppercase tracking-[0.08em] text-muted">
@@ -24,13 +24,13 @@ export function PageTable({ headers, rows, colWidths, caption }: Props) {
           </caption>
         ) : null}
         <thead>
-          <tr className="border-y border-border bg-white/50">
+          <tr className="border-b border-border/50 bg-[#fafaf8]">
             {headers.map((h, i) => (
               <th
                 key={i}
                 scope="col"
                 style={{ width: colWidths?.[i] }}
-                className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.06em] text-muted"
+                className="px-5 py-3.5 text-xs font-semibold uppercase tracking-[0.06em] text-muted"
               >
                 {h}
               </th>
@@ -41,12 +41,12 @@ export function PageTable({ headers, rows, colWidths, caption }: Props) {
           {rows.map((row, ri) => (
             <tr
               key={ri}
-              className="border-b border-border/70 align-top last:border-b-0"
+              className="border-b border-border/40 align-top last:border-b-0"
             >
               {row.map((cell, ci) => (
                 <td
                   key={ci}
-                  className="px-4 py-3 text-[0.875rem] leading-relaxed text-foreground"
+                  className="px-5 py-3.5 text-[0.875rem] leading-relaxed text-foreground"
                 >
                   {cell}
                 </td>

@@ -13,10 +13,8 @@ export default function ColorLayout({ children }: { children: ReactNode }) {
   return (
     <article className="doc-prose">
       <PageHeader
-        eyebrow="Foundation"
-        title="Color"
-        description="ACKO's colour system is a layered token architecture: a primitive palette feeds semantic tokens, and components only ever consume the semantic layer. This page is the source of truth for what each colour means and where it shows up."
-        lastUpdated="April 27, 2026"
+        title="Colour"
+        description="A layered token architecture: a primitive palette feeds semantic tokens, and components only ever consume the semantic layer. This page is the source of truth for what each colour means and where it shows up."
       />
       <PageTabs tabs={tabs} />
       {children}

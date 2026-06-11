@@ -13,14 +13,76 @@ import {
   PrimaryButtonMock,
 } from "@/components/showcase/color/UIMocks";
 import { greyRamp, purpleRamp } from "@/lib/color-tokens";
+import { purple, grey } from "@/lib/acko-tokens";
 
 export const metadata: Metadata = {
-  title: "Color · Overview",
+  title: "Colour · Overview",
 };
+
+/* ──────────────────────────────────────────────────────────────────
+ * Atlassian-style brand band: full-width swatch row at the top.
+ * Brand purple anchors the system; greys carry hierarchy.
+ * ─────────────────────────────────────────────────────────────── */
+function BrandBand() {
+  const purpleSteps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
+  const greySteps = [50, 100, 150, 200, 300, 450, 550, 700, 800] as const;
+  return (
+    <div className="not-prose mb-12 space-y-6">
+      <div>
+        <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[#6841E6]">
+          Brand purple
+        </p>
+        <div className="flex overflow-hidden rounded-[14px] border border-[#E4E5E9]">
+          {purpleSteps.map((step) => (
+            <div
+              key={step}
+              className="group relative flex-1 transition-transform duration-200 hover:scale-[1.04] hover:z-10"
+              style={{ backgroundColor: purple[step], height: 96 }}
+            >
+              <div className="absolute inset-x-0 bottom-2 text-center">
+                <p
+                  className="font-mono text-[10px] font-medium"
+                  style={{ color: step >= 400 ? "#FFFFFF" : "#1F1F23" }}
+                >
+                  {step}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[#5C616B]">
+          Grey scale
+        </p>
+        <div className="flex overflow-hidden rounded-[14px] border border-[#E4E5E9]">
+          {greySteps.map((step) => (
+            <div
+              key={step}
+              className="group relative flex-1 transition-transform duration-200 hover:scale-[1.04] hover:z-10"
+              style={{ backgroundColor: grey[step], height: 64 }}
+            >
+              <div className="absolute inset-x-0 bottom-2 text-center">
+                <p
+                  className="font-mono text-[10px] font-medium"
+                  style={{ color: step >= 400 ? "#FFFFFF" : "#1F1F23" }}
+                >
+                  {step}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ColorOverviewPage() {
   return (
     <>
+      <BrandBand />
+
       {/* Introduction --------------------------------------------------- */}
       <Section id="introduction" title="Introduction">
         <p className="max-w-3xl text-[0.9375rem] leading-relaxed text-foreground">
@@ -40,10 +102,10 @@ export default function ColorOverviewPage() {
         </p>
       </Section>
 
-      {/* Color anatomy -------------------------------------------------- */}
+      {/* Colour anatomy -------------------------------------------------- */}
       <Section
         id="color-anatomy"
-        title="Color anatomy"
+        title="Colour anatomy"
         description="A theme assigns hex values to tokens. A token assigns a value to a role. A role describes what the colour does in the interface — for example, a card background or an error border. Components consume the role, not the hex."
       >
         <PageTable
@@ -91,10 +153,10 @@ export default function ColorOverviewPage() {
         </Section>
       </Section>
 
-      {/* Implementing color -------------------------------------------- */}
+      {/* Implementing colour ------------------------------------------- */}
       <Section
-        id="implementing-color"
-        title="Implementing color"
+        id="implementing-colour"
+        title="Implementing colour"
         description="Themes ship as CSS custom properties scoped to a [data-theme] attribute. Switching themes is a single attribute swap on <html> — no component re-render is required."
       >
         <pre className="not-prose mb-2 overflow-x-auto rounded-lg bg-[#161616] px-4 py-3 text-[12px] leading-relaxed text-white">
@@ -346,14 +408,14 @@ export default function ColorOverviewPage() {
               meta: "Code tab",
             },
             {
-              title: "Visual direction",
-              href: "/visual-direction",
-              meta: "Cinematic palette",
+              title: "About ACKO",
+              href: "/principles",
+              meta: "Brand traits and tone",
             },
             {
               title: "Brand purple in product",
               href: "/principles/clear-over-clever",
-              meta: "Principle",
+              meta: "Trait",
             },
           ]}
         />

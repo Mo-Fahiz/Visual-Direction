@@ -5,11 +5,11 @@ import { ConditionalSiteFooter } from "@/components/layout/ConditionalSiteFooter
 
 export const metadata: Metadata = {
   title: {
-    default: "ACKO Design System",
-    template: "%s · ACKO Design System",
+    default: "ACKO Design Standards",
+    template: "%s · ACKO Design Standards",
   },
   description:
-    "Source of truth for ACKO principles, visual direction, foundations, and product implementation guidance.",
+    "A shared reference for creating consistent and recognisable ACKO experiences — about ACKO, the design system, voice and tone, and implementation guidance.",
 };
 
 export default function RootLayout({

@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { CodeChip } from "@/components/docs/CodeChip";
+import { PageTable } from "@/components/docs/PageTable";
 import { ResourceCards } from "@/components/docs/ResourceCards";
 import { Section } from "@/components/docs/Section";
-import { DurationLadder } from "@/components/showcase/motion/DurationLadder";
-import { EaseCompareGrid } from "@/components/showcase/motion/EaseCompareGrid";
-import { EaseCurveDemo } from "@/components/showcase/motion/EaseCurveDemo";
-import { KeyframeDemo } from "@/components/showcase/motion/KeyframeDemo";
-import { PerformanceCompare } from "@/components/showcase/motion/PerformanceCompare";
-import { ReducedMotionDemo } from "@/components/showcase/motion/ReducedMotionDemo";
-import { easings, keyframes } from "@/lib/motion-tokens";
+import { PageTransitionDemos, MicroInteractionDemos } from "./MotionDemos";
 
 export const metadata: Metadata = {
   title: "Motion · Overview",
@@ -20,116 +13,185 @@ export default function MotionOverviewPage() {
     <>
       <Section id="introduction" title="Introduction">
         <p className="max-w-3xl text-[0.9375rem] leading-relaxed text-foreground">
-          Motion is part of the language. It tells users which element changed,
-          where it came from, and where it&apos;s going next. Done well, motion
-          disappears — done badly, it slows people down. ACKO motion sticks to a
-          tight token set so every flow inherits the same rhythm without
-          designers reinventing curves at the component level.
+          A unified motion system for creating consistent, smooth, and
+          meaningful UI animations across ACKO products — delivering a
+          seamless, premium experience through purposeful motion.
         </p>
-        <p className="mt-4 max-w-3xl text-[0.9375rem] leading-relaxed text-foreground">
-          The rules are simple: <strong>animate transform and opacity</strong>,{" "}
-          <strong>exits run faster than entrances</strong>, and{" "}
-          <strong>respect <CodeChip tone="neutral">prefers-reduced-motion</CodeChip></strong>.
-          Anything you see here can be lifted directly into product code.
+        <p className="mt-4 max-w-3xl text-[0.9375rem] leading-relaxed text-muted">
+          Four words anchor every decision: <strong>Purposeful</strong>,{" "}
+          <strong>Consistent</strong>, <strong>Premium</strong>,{" "}
+          <strong>Fluid</strong>.
         </p>
       </Section>
 
       <Section
-        id="curve-family"
-        title="Curve family at a glance"
-        description="The five tokens cover every motion need across the product. Press Race — they all travel the same distance over the same time so the differences are pure curve."
+        id="principles"
+        title="Core motion principles"
+        description="Three rules that shape every animation we ship."
       >
-        <div className="not-prose">
-          <EaseCompareGrid />
-        </div>
-      </Section>
-
-      <Section
-        id="easing-curves"
-        title="Easing curves"
-        description="Each curve carries an intent. Reach for the one whose intent matches your interaction; never invent new bezier values inside component code."
-      >
-        <div className="not-prose space-y-5">
-          {easings.map((e) => (
-            <EaseCurveDemo key={e.token} easing={e} />
+        <div className="not-prose grid gap-5 md:grid-cols-3">
+          {[
+            {
+              num: "01",
+              title: "Calm, smooth, trustworthy",
+              desc: "Motion should feel effortless and steady — like a brand you can rely on. No sudden jumps, no unnecessary flair.",
+            },
+            {
+              num: "02",
+              title: "Purposeful & helpful",
+              desc: "Every animation has a reason. Use motion to guide users, confirm actions, and make the experience easier to understand — not just to look good.",
+            },
+            {
+              num: "03",
+              title: "Consistent, reusable, on-brand",
+              desc: "The same interaction always feels the same across the app — smooth, modern, and unmistakably ACKO. Familiarity builds trust.",
+            },
+          ].map((p) => (
+            <div
+              key={p.num}
+              className="rounded-2xl border border-border/60 bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+            >
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#6841E6]">
+                {p.num}
+              </p>
+              <p className="mt-3 text-sm font-semibold text-foreground">
+                {p.title}
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {p.desc}
+              </p>
+            </div>
           ))}
         </div>
       </Section>
 
       <Section
-        id="duration"
-        title="Duration"
-        description="Duration tokens are descriptive — they capture what each speed feels like. Hover and micro-feedback at 100ms feel instant; 500ms+ is reserved for hero moments."
+        id="page-transitions"
+        title="Page transitions"
+        description="Four transition types cover every navigation context. Each demo below loops every few seconds — observe the curve and the duration."
       >
-        <div className="not-prose">
-          <DurationLadder />
+        <PageTransitionDemos />
+        <div className="mt-8">
+          <PageTable
+            caption="Page transition types"
+            headers={["Type", "Context", "Usage"]}
+            rows={[
+              [
+                "Right to left (default)",
+                "Primary navigation — cards, links, CTAs",
+                "90% of transitions",
+              ],
+              [
+                "Crossfade",
+                "Bottom navbar only",
+                "Tab switching (Home, Discover, Support)",
+              ],
+              [
+                "Bottom sheet",
+                "In-context information",
+                "Slides up for filters, details, confirmations",
+              ],
+              [
+                "Card expand",
+                "Discover tab",
+                "Cards grow to fill screen — blogs, articles, vlogs",
+              ],
+            ]}
+          />
         </div>
       </Section>
 
       <Section
-        id="keyframes"
-        title="Shared keyframes"
-        description="Five named animations that handle 90% of in-product motion. Each one ships with its component so consumers don't redefine the moves."
+        id="microinteractions"
+        title="Microinteractions"
+        description="Timing values for the most common in-product animations. Every value is part of the system — don't invent new ones."
       >
-        <div className="not-prose grid gap-5 lg:grid-cols-2">
-          {keyframes.map((k) => (
-            <KeyframeDemo key={k.name} keyframe={k} />
-          ))}
-        </div>
+        <PageTable
+          caption="Microinteraction timings"
+          headers={["Interaction", "Timing"]}
+          rows={[
+            ["Button press", "80ms press · 140ms release"],
+            ["Sheet open", "550ms ease-out · 400ms ease-in"],
+            ["Accordion", "280ms ease-out"],
+            ["Toast", "260ms ease-out · 220ms ease-in"],
+            ["Input focus", "180ms · label floats up"],
+            ["Error shake", "240ms · 6 keyframes"],
+            ["Toggle", "220ms · spring settle"],
+            ["Success state", "500ms scale · 700ms hold"],
+            ["Spinner", "800ms · linear · tap to pause"],
+            ["Chip select", "180ms ease-out"],
+            ["Skeleton shimmer", "1400ms · linear loop"],
+            ["Stagger list", "56ms offset · 300ms ease-out"],
+            ["Checkbox tick", "80ms press · 180ms draw"],
+            ["Number count-up", "400–700ms ease-out (rAF)"],
+            ["Three-dot loader", "1200ms · 160ms offset"],
+            ["Card swipe", "Linear drag · 320ms ease-out settle"],
+            ["Progress bar", "2s linear bar · ease-out %"],
+          ]}
+        />
       </Section>
 
       <Section
-        id="accessibility"
-        title="Accessibility"
-        description="Motion has accessibility cost. Some users get nauseous from parallax and slides; others lose information that's only conveyed by the animation. Two rules cover both."
+        id="microinteraction-demos"
+        title="Microinteractions in motion"
+        description="Six common moments — hover the cards or just watch the loop. Every demo uses real ACKO timings and curves."
       >
-        <div className="not-prose">
-          <ReducedMotionDemo />
-        </div>
-        <ul className="mt-6 space-y-2 text-[0.9375rem] leading-relaxed text-foreground">
+        <MicroInteractionDemos />
+      </Section>
+
+      <Section
+        id="rules"
+        title="Implementation rules"
+        description="Three constraints that keep motion fast and accessible."
+      >
+        <ul className="space-y-3 text-[0.9375rem] leading-relaxed text-foreground">
           <li>
-            <strong>Respect <CodeChip tone="neutral">prefers-reduced-motion: reduce</CodeChip>.</strong>{" "}
-            Replace movement with a fade, or render the end state immediately.
+            <strong>Animate only transform and opacity.</strong> The compositor
+            handles them off the main thread. Anything else (width, height,
+            margin) triggers layout or paint and risks dropped frames.
           </li>
           <li>
-            <strong>Never rely on motion alone.</strong> The animation can
-            decorate state changes, but the underlying state must also be
-            visible without it.
+            <strong>Exits run faster than entrances.</strong> A 550ms enter
+            pairs with a 400ms exit. Users feel the speed difference as
+            responsiveness.
+          </li>
+          <li>
+            <strong>
+              Respect <code>prefers-reduced-motion</code>.
+            </strong>{" "}
+            Replace movement with a fade or render the end state instantly.
+            Never rely on motion alone to communicate a state change.
           </li>
         </ul>
-      </Section>
-
-      <Section
-        id="performance"
-        title="Performance"
-        description="Smooth motion comes from animating the right properties. Animate transform and opacity — the compositor handles them off the main thread. Anything else triggers layout or paint and risks dropping frames."
-      >
-        <div className="not-prose">
-          <PerformanceCompare />
-        </div>
       </Section>
 
       <Section id="resources" title="Resources">
         <ResourceCards
           resources={[
-            { title: "All motion tokens", href: "/foundations/motion/tokens", meta: "Tokens tab" },
-            { title: "How to apply motion", href: "/foundations/motion/usage", meta: "Usage tab" },
-            { title: "Setup & code", href: "/foundations/motion/code", meta: "Code tab" },
-            { title: "motion (npm)", href: "https://motion.dev/docs/react-quick-start", meta: "External · React API", external: true },
+            {
+              title: "ACKO Motion System",
+              href: "https://acko-motion-system.vercel.app/",
+              meta: "External · The full motion system reference",
+              external: true,
+            },
+            {
+              title: "All motion tokens",
+              href: "/foundations/motion/tokens",
+              meta: "Tokens tab",
+            },
+            {
+              title: "How to apply motion",
+              href: "/foundations/motion/usage",
+              meta: "Usage tab",
+            },
+            {
+              title: "Setup & code",
+              href: "/foundations/motion/code",
+              meta: "Code tab",
+            },
           ]}
         />
       </Section>
-
-      <p className="mt-10 text-sm text-muted">
-        See it in product:{" "}
-        <Link href="/patterns" className="underline">
-          Patterns
-        </Link>{" "}
-        ·{" "}
-        <Link href="/principles/effortless-by-default" className="underline">
-          Effortless by default
-        </Link>
-      </p>
     </>
   );
 }

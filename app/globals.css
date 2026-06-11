@@ -3,10 +3,11 @@
 
 /* ACKO colors + typography (Euclid). Layout rhythm inspired by Davies portfolio template — not template colors. */
 :root {
-  --acko-cream: #fafaf8;
-  --acko-ink: #0a0a0a;
-  --acko-muted: #605f63;
-  --acko-border: #e0e0e1;
+  /* Atlassian-style neutrals: warmer surface, deeper ink, softer hairline */
+  --acko-cream: #FAFAFB;
+  --acko-ink: #1F1F23;
+  --acko-muted: #5C616B;
+  --acko-border: #E4E5E9;
   --acko-purple: #6841e6;
   --acko-purple-soft: #f5f3ff;
   --acko-purple-rgb: 104, 65, 230;
@@ -83,6 +84,30 @@ body {
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+}
+
+/* —— Scroll-triggered fade-in animation —— */
+
+@keyframes acko-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: acko-fade-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 /* —— Davies-inspired utilities (ACKO palette) —— */
@@ -229,36 +254,40 @@ body {
   max-width: 28rem;
 }
 
-/* Prose-ish doc content */
+/* Prose — Atlassian editorial polish */
 .doc-prose h1 {
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: clamp(34px, 4.5vw, 48px);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: clamp(36px, 4.5vw, 52px);
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
+  color: var(--acko-ink);
 }
 
 .doc-prose h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
   letter-spacing: -0.02em;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   margin-bottom: 0.75rem;
   color: var(--acko-ink);
 }
 
 .doc-prose h3 {
-  font-size: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
   font-weight: 600;
-  margin-top: 1.5rem;
+  letter-spacing: -0.01em;
+  margin-top: 1.75rem;
   margin-bottom: 0.5rem;
   color: var(--acko-ink);
 }
 
 .doc-prose p,
 .doc-prose li {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.65;
-  color: #333333;
+  color: var(--acko-ink);
 }
 
 .doc-prose ul {
@@ -326,4 +355,27 @@ body {
 .doc-prose a.ds-resource-card:focus-visible {
   text-decoration: none;
   color: inherit;
+}
+
+/* Any element with not-prose escapes doc-prose styling */
+.doc-prose .not-prose ul,
+.doc-prose .not-prose ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.doc-prose .not-prose li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.doc-prose .not-prose a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.doc-prose .not-prose a:hover {
+  text-decoration: none;
 }

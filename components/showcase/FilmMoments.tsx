@@ -54,7 +54,7 @@ const moments: Moment[] = [
     principle: "Respectful of time",
     imgDesc: "Calm morning notification",
     imgBrief:
-      "Phone on a bedside table or breakfast setup showing a single ACKO notification card. Morning light, clean composition. The feeling is calm and organized. Indian home, real textures. The notification is the only thing asking for attention.",
+      "Phone on a bedside table or breakfast setup showing a single ACKO notification card. Morning light, clean composition. The feeling is calm and organised. Indian home, real textures. The notification is the only thing asking for attention.",
     mood: ["morning light", "single notification", "breakfast", "calm"],
     color: "#1A0F2E",
     accent: P600,

@@ -15,7 +15,7 @@ export default function MotionLayout({ children }: { children: ReactNode }) {
       <PageHeader
         eyebrow="Foundation"
         title="Motion"
-        description="Motion at ACKO is functional, never decorative. Five curves, six durations, and a small library of named keyframes — every animation in product code resolves to one of these tokens."
+        description="A unified motion system for consistent, smooth, and meaningful UI animations. Purposeful, consistent, premium, fluid — every animation in product resolves to a shared timing and curve."
         lastUpdated="April 27, 2026"
       />
       <PageTabs tabs={tabs} />

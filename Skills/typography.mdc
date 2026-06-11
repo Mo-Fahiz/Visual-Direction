@@ -27,27 +27,27 @@ Weights: Light (300), Regular (400), Medium (500), Semibold (600), Bold (700).
 
 The system defines **15 font sizes**. Every text-bearing component must reference this scale — no hardcoded sizes outside of it.
 
-| Step | Size | Line Height | Token (CSS) | Tailwind |
-|------|------|-------------|-------------|----------|
-| 1 | 10px | 12px | `--font-10-size` / `--font-10-line` | `text-[10px] leading-[12px]` |
-| 2 | 12px | 16px | `--font-12-size` / `--font-12-line` | `text-xs leading-[16px]` |
-| 3 | 14px | 20px | `--font-14-size` / `--font-14-line` | `text-sm leading-[20px]` |
-| 4 | 16px | 24px | `--font-16-size` / `--font-16-line` | `text-base leading-[24px]` |
-| 5 | 18px | 24px | `--font-18-size` / `--font-18-line` | `text-lg leading-[24px]` |
-| 6 | 20px | 28px | `--font-20-size` / `--font-20-line` | `text-xl leading-[28px]` |
-| 7 | 24px | 32px | `--font-24-size` / `--font-24-line` | `text-2xl leading-[32px]` |
-| 8 | 30px | 36px | `--font-30-size` / `--font-30-line` | `text-[30px] leading-[36px]` |
-| 9 | 36px | 44px | `--font-36-size` / `--font-36-line` | `text-[36px] leading-[44px]` |
-| 10 | 48px | 56px | `--font-48-size` / `--font-48-line` | `text-[48px] leading-[56px]` |
-| 11 | 54px | 64px | `--font-54-size` / `--font-54-line` | `text-[54px] leading-[64px]` |
-| 12 | 60px | 72px | `--font-60-size` / `--font-60-line` | `text-[60px] leading-[72px]` |
-| 13 | 72px | 80px | `--font-72-size` / `--font-72-line` | `text-[72px] leading-[80px]` |
-| 14 | 96px | 108px | `--font-96-size` / `--font-96-line` | `text-[96px] leading-[108px]` |
-| 15 | 128px | 140px | `--font-128-size` / `--font-128-line` | `text-[128px] leading-[140px]` |
+| Step | Size | Line Height | Tier | Token (CSS) | Tailwind |
+|------|------|-------------|------|-------------|----------|
+| 1 | 10px | 12px | 1 | `--font-10-size` / `--font-10-line` | `text-[10px] leading-[12px]` |
+| 2 | 12px | 16px | 1 | `--font-12-size` / `--font-12-line` | `text-xs leading-[16px]` |
+| 3 | 14px | 20px | 1 | `--font-14-size` / `--font-14-line` | `text-sm leading-[20px]` |
+| 4 | 16px | 24px | 1 | `--font-16-size` / `--font-16-line` | `text-base leading-[24px]` |
+| 5 | 18px | 24px | 1 | `--font-18-size` / `--font-18-line` | `text-lg leading-[24px]` |
+| 6 | 20px | 28px | 1 | `--font-20-size` / `--font-20-line` | `text-xl leading-[28px]` |
+| 7 | 24px | 32px | 1 | `--font-24-size` / `--font-24-line` | `text-2xl leading-[32px]` |
+| 8 | 30px | 36px | 1 | `--font-30-size` / `--font-30-line` | `text-[30px] leading-[36px]` |
+| 9 | 36px | 44px | 1 | `--font-36-size` / `--font-36-line` | `text-[36px] leading-[44px]` |
+| 10 | 48px | 56px | 1 | `--font-48-size` / `--font-48-line` | `text-[48px] leading-[56px]` |
+| 11 | 54px | 64px | 2 | `--font-54-size` / `--font-54-line` | `text-[54px] leading-[64px]` |
+| 12 | 60px | 72px | 1 | `--font-60-size` / `--font-60-line` | `text-[60px] leading-[72px]` |
+| 13 | 72px | 80px | 1 | `--font-72-size` / `--font-72-line` | `text-[72px] leading-[80px]` |
+| 14 | 96px | 108px | 2 | `--font-96-size` / `--font-96-line` | `text-[96px] leading-[108px]` |
+| 15 | 128px | 140px | 2 | `--font-128-size` / `--font-128-line` | `text-[128px] leading-[140px]` |
 
 ## Style Variants
 
-Each of the 15 sizes carries **10 named style variants**. A variant combines **weight**, **font-style**, and **text-decoration**.
+Each of the 15 sizes carries **4 named style variants**. A variant combines **weight** and **font-style**.
 
 | # | Variant name | Weight | Italic | Underline | Tailwind utilities |
 |---|--------------|--------|--------|-----------|--------------------|
@@ -55,18 +55,12 @@ Each of the 15 sizes carries **10 named style variants**. A variant combines **w
 | 2 | `medium` | 500 (Medium) | — | — | `font-medium` |
 | 3 | `bold` | 700 (Bold) | — | — | `font-bold` |
 | 4 | `italic` | 400 (Regular) | yes | — | `font-normal italic` |
-| 5 | `medium-italic` | 500 (Medium) | yes | — | `font-medium italic` |
-| 6 | `underline` | 400 (Regular) | — | yes | `font-normal underline` |
-| 7 | `medium-underline` | 500 (Medium) | — | yes | `font-medium underline` |
-| 8 | `bold-underline` | 700 (Bold) | — | yes | `font-bold underline` |
-| 9 | `underline-italic` | 400 (Regular) | yes | yes | `font-normal italic underline` |
-| 10 | `medium-under-italic` | 500 (Medium) | yes | yes | `font-medium italic underline` |
 
-**Total combinations:** 15 sizes × 10 variants = **150 text styles**.
+**Total combinations:** 15 sizes × 4 variants = **60 text styles**.
 
 ### How to reference a style
 
-Pattern: `{size}/{variant}` — e.g. **10/normal**, **24/bold**, **48/medium-italic**.
+Pattern: `{size}/{variant}` — e.g. **10/normal**, **24/bold**, **48/italic**.
 
 CSS token pattern per combination:
 ```css
@@ -75,7 +69,7 @@ CSS token pattern per combination:
 --font-{size}-{variant}-decoration /* e.g. --font-24-bold-decoration: none */
 ```
 
-Size and line-height are shared across all 10 variants of the same step — only weight, font-style, and text-decoration change.
+Size and line-height are shared across all 4 variants of the same step — only weight and font-style change.
 
 ### Example usage in CSS
 
@@ -133,6 +127,30 @@ Semantic tokens map to the size ramp above. Components should prefer semantic al
 | `--font-label-sm-*` | 10px / 12px | 0.3px | `medium` (500) |
 | `--font-caption-*` | 12px / 16px | 0px | `normal` (400) |
 | `--font-overline-*` | 10px / 12px | 0.5px | `medium` (500) |
+
+## Sanctioned Pairings
+
+Use these defaults for each semantic role. Deviations require design review.
+
+| Semantic Role | Size | Weight | Use |
+|---|---|---|---|
+| Display XL–MD | 72/60/48px | Bold 700 | Heroes, landing pages |
+| Display SM | 36px | Medium 500 | Sub-hero, large cards |
+| Heading XL–SM | 30/24/20/18px | Medium 500 | Page/section titles |
+| Body LG/MD/SM | 18/16/14px | Regular 400 | Prose, forms, tables |
+| Label LG/MD/SM | 14/12/10px | Medium 500 | Form labels, metadata |
+| Caption | 12px | Regular 400 | Hints, legal one-liners |
+| Overline | 10px | Medium 500 | Eyebrows, kickers |
+
+### Sanctioned overrides
+
+Only three cases where you deviate from the default weight:
+
+| Base style | Override | Use case |
+|---|---|---|
+| Body MD / LG / SM | Medium (500) | Inline emphasis in body text |
+| Body SM | Italic (400) | Legal references, policy clause citations |
+| Heading SM / MD | Bold (700) | Data-dense tables where scanning speed matters |
 
 ## Tailwind Mapping
 
@@ -196,10 +214,10 @@ Semantic tokens map to the size ramp above. Components should prefer semantic al
 
 ## Rules
 
-- Every text-bearing component must reference the **15-step size ramp** and **10 style variants** defined above — no component-specific hardcoded font sizes.
+- Every text-bearing component must reference the **15-step size ramp** and **4 style variants** defined above — no component-specific hardcoded font sizes.
 - Minimum 14px for body text, 12px for labels, 10px absolute minimum (use sparingly).
 - Medium (500) for emphasis in body — not Bold.
-- Bold (700) is reserved for display-level text and the `bold` / `bold-underline` variants.
+- Bold (700) is reserved for display-level text and the `bold` variant.
 - Tighter letter-spacing for large text, looser for small text.
 - Use `text-wrap: balance` on headings.
 - `font-variant-numeric: tabular-nums` for dynamic numbers.

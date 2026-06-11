@@ -1,79 +1,196 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { kitNav, primaryNav, resourceNav, type NavItem } from "@/lib/nav";
+import Image from "next/image";
+import { primaryNav, resourceNav, type NavItem } from "@/lib/nav";
 
-function NavLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
+/* ──────────────────────────────────────────────────────────────────
+ * Chevron icon (rotates when expanded)
+ * ─────────────────────────────────────────────────────────────── */
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 16 16"
+      fill="none"
+      className={`shrink-0 text-[#6B6F7B] transition-transform duration-200 ${
+        open ? "rotate-90" : ""
+      }`}
+      aria-hidden
+    >
+      <path
+        d="M6 4l4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+ * Leaf nav link
+ * ─────────────────────────────────────────────────────────────── */
+function LeafLink({
+  item,
+  active,
+  depth = 0,
+}: {
+  item: NavItem;
+  active: boolean;
+  depth?: number;
+}) {
+  return (
+    <Link
+      href={item.href}
+      className={[
+        "block rounded-[8px] py-[7px] text-[14px] leading-[20px] transition-colors",
+        depth > 0 ? "pl-7 pr-3" : "px-3",
+        active
+          ? "font-medium text-[#1F1F23]"
+          : "text-[#5C616B] hover:bg-[#F4F4F6] hover:text-[#1F1F23]",
+      ].join(" ")}
+    >
+      {item.title}
+    </Link>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+ * Group item (top-level with children — collapsible)
+ * ─────────────────────────────────────────────────────────────── */
+function GroupItem({ item }: { item: NavItem }) {
   const pathname = usePathname();
-  const active =
-    pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href + "/"));
-  const isExactChild = item.children?.some((c) => c.href === pathname);
+
+  // open by default if defaultOpen flag set OR pathname starts with one of the children
+  const childActive = item.children?.some(
+    (c) => pathname === c.href || pathname.startsWith(c.href + "/")
+  );
+  const [open, setOpen] = useState<boolean>(
+    Boolean(item.defaultOpen) || Boolean(childActive)
+  );
+
+  // sync to active child after navigation
+  useEffect(() => {
+    if (childActive) setOpen(true);
+  }, [childActive]);
 
   return (
     <div>
-      <Link
-        href={item.href}
-        className={`flex items-start gap-1 rounded-[10px] px-2 py-2 text-[13px] font-medium leading-snug transition-colors ${
-          depth ? "pl-3" : ""
-        } ${
-          active || isExactChild
-            ? "bg-purple-soft text-accent"
-            : "text-[#333] hover:bg-[#f5f5f5]"
-        }`}
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center justify-between gap-2 rounded-[8px] px-3 py-[7px] text-left text-[14px] font-medium leading-[20px] text-[#1F1F23] transition-colors hover:bg-[#F4F4F6]"
+        aria-expanded={open}
       >
-        {item.index && depth === 0 ? (
-          <span className="ds-nav-prefix pt-0.5">{item.index} /</span>
-        ) : null}
         <span>{item.title}</span>
-      </Link>
-      {item.children ? (
-        <div className="mt-0.5 ml-2 space-y-0.5 border-l border-border pl-3">
-          {item.children.map((child) => (
-            <NavLink key={child.href} item={child} depth={depth + 1} />
-          ))}
+        <Chevron open={open} />
+      </button>
+      {open && item.children ? (
+        <div className="mt-0.5 space-y-px">
+          {item.children.map((child) => {
+            const active =
+              pathname === child.href ||
+              pathname.startsWith(child.href + "/");
+            return (
+              <LeafLink
+                key={child.href}
+                item={child}
+                active={active}
+                depth={1}
+              />
+            );
+          })}
         </div>
       ) : null}
     </div>
   );
 }
 
-function NavSection({ title, items }: { title: string; items: NavItem[] }) {
+/* ──────────────────────────────────────────────────────────────────
+ * Top-level entry (leaf or group)
+ * ─────────────────────────────────────────────────────────────── */
+function TopLevelEntry({ item }: { item: NavItem }) {
+  const pathname = usePathname();
+
+  if (item.children && item.children.length > 0) {
+    return <GroupItem item={item} />;
+  }
+
+  const active =
+    pathname === item.href ||
+    (item.href !== "/" && pathname.startsWith(item.href + "/"));
+
   return (
-    <div className="mb-8">
-      <p className="ds-caption mb-3 px-2 font-medium uppercase tracking-[0.12em] text-muted">
-        {title}
-      </p>
-      <nav className="space-y-0.5">
-        {items.map((item) => (
-          <NavLink key={item.href} item={item} />
-        ))}
-      </nav>
-    </div>
+    <Link
+      href={item.href}
+      className={[
+        "block rounded-[8px] px-3 py-[7px] text-[14px] leading-[20px] transition-colors",
+        active
+          ? "font-medium text-[#1F1F23]"
+          : "font-medium text-[#1F1F23] hover:bg-[#F4F4F6]",
+      ].join(" ")}
+    >
+      {item.title}
+    </Link>
   );
 }
 
+/* ──────────────────────────────────────────────────────────────────
+ * Sidebar
+ *
+ * Floating panel — fixed positioning with margin from edges, soft
+ * card aesthetic with hairline border, rounded corners, subtle shadow.
+ * Matches Atlassian's left-rail pattern.
+ * ─────────────────────────────────────────────────────────────── */
 export function Sidebar() {
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-[17rem] overflow-y-auto border-r border-border bg-sidebar px-5 py-10 md:block">
-      <Link href="/" className="mb-10 block px-2 transition-opacity hover:opacity-80">
-        <span className="ds-caption block font-medium uppercase tracking-[0.14em] text-muted">
-          ACKO
-        </span>
-        <span className="mt-1 block text-[17px] font-semibold tracking-tight text-foreground">
-          Design System
+    <aside
+      className="fixed inset-y-4 left-4 z-40 hidden w-[248px] flex-col overflow-hidden rounded-[14px] border border-[#E4E5E9] bg-white shadow-[0_1px_2px_rgba(15,15,20,0.04),0_4px_12px_rgba(15,15,20,0.04)] md:flex"
+      aria-label="Primary navigation"
+    >
+      {/* ── Logo header ─────────────────────────────────────── */}
+      <Link
+        href="/"
+        className="block px-5 pt-5 pb-3 transition-opacity hover:opacity-80"
+      >
+        <Image
+          src="/acko-logo.svg"
+          alt="ACKO"
+          width={92}
+          height={28}
+          priority
+        />
+        <span className="mt-3 block text-[17px] font-semibold tracking-tight text-[#1F1F23]">
+          Design Standards
         </span>
       </Link>
-      <p className="ds-caption mb-3 px-2 font-medium uppercase tracking-[0.12em] text-muted">
-        Documentation
-      </p>
-      <nav className="space-y-0.5">
-        {primaryNav.map((item) => (
-          <NavLink key={item.href} item={item} />
-        ))}
+
+      <div className="mx-5 my-3 h-px bg-[#ECEDF0]" aria-hidden />
+
+      {/* ── Primary nav ─────────────────────────────────────── */}
+      <nav className="flex-1 overflow-y-auto px-3 pb-3">
+        <div className="space-y-px">
+          {primaryNav.map((item) => (
+            <TopLevelEntry key={item.href} item={item} />
+          ))}
+        </div>
+
+        {resourceNav.length > 0 ? (
+          <>
+            <div className="mx-2 my-4 h-px bg-[#ECEDF0]" aria-hidden />
+            <div className="space-y-px">
+              {resourceNav.map((item) => (
+                <TopLevelEntry key={item.href} item={item} />
+              ))}
+            </div>
+          </>
+        ) : null}
       </nav>
-      <NavSection title="UI kit & patterns" items={kitNav} />
-      <NavSection title="Resources" items={resourceNav} />
     </aside>
   );
 }

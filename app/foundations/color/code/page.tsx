@@ -3,7 +3,7 @@ import { ResourceCards } from "@/components/docs/ResourceCards";
 import { Section } from "@/components/docs/Section";
 
 export const metadata: Metadata = {
-  title: "Color · Code",
+  title: "Colour · Code",
 };
 
 export default function ColorCodePage() {

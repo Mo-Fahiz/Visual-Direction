@@ -1,125 +1,193 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { FadeIn } from "@/components/docs/FadeIn";
 
 export const metadata: Metadata = {
   title: "Spacing",
 };
 
+/* ── Data ─────────────────────────────────────────────────────────── */
+
+const SPACING_STEPS = [
+  { px: 4,  label: "Micro gap" },
+  { px: 8,  label: "Icon padding" },
+  { px: 12, label: "Form field gap" },
+  { px: 16, label: "Standard" },
+  { px: 20, label: "Card padding md" },
+  { px: 24, label: "Card padding lg" },
+  { px: 32, label: "Group spacing" },
+  { px: 40, label: "Block break" },
+  { px: 48, label: "Section gap" },
+  { px: 64, label: "Page section" },
+  { px: 80, label: "Hero spacing" },
+  { px: 96, label: "Large break" },
+];
+
+const COMPONENT_HEIGHTS = [
+  { px: 32, label: "Button xs" },
+  { px: 40, label: "Button sm · Text input sm" },
+  { px: 44, label: "Min tap target" },
+  { px: 48, label: "Button md · Text input md" },
+  { px: 56, label: "Button lg · Text input lg" },
+  { px: 64, label: "Button xl" },
+];
+
+const INTERS = [
+  { between: "Label and input",          util: "gap-8" },
+  { between: "Input and helper text",    util: "gap-8" },
+  { between: "Form fields",              util: "gap-20" },
+  { between: "Section heading and body", util: "gap-32" },
+  { between: "Cards (mobile)",           util: "gap-16" },
+  { between: "Cards (desktop)",          util: "gap-24" },
+  { between: "Buttons in a group",       util: "gap-12" },
+  { between: "Icon and adjacent text",   util: "gap-8" },
+];
+
+/* ── Page ─────────────────────────────────────────────────────────── */
+
 export default function SpacingPage() {
   return (
-    <article className="doc-prose">
+    <article>
       <PageHeader
         title="Spacing"
-        description="Numeric scale for margins, padding, gaps, and component sizing."
-        lastUpdated="April 27, 2026"
+        description="A 1px-base scale where the utility number is the pixel value. gap-16 = 16px, p-24 = 24px, h-48 = 48px. No math, no indirection."
       />
 
-      <h2>Spacing System</h2>
-      <p>
-        Based on <code>--spacing: 0.0625rem</code> (1px at 16px root). The
-        utility number equals the pixel value: <code>gap-16</code> = 16px.
-      </p>
-
-      <h3>Spacing Scale</h3>
-      <div className="not-prose mt-4 grid gap-2 md:grid-cols-6">
-        {[4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 64, 80, 96].map((px) => (
-          <div
-            key={px}
-            className="flex flex-col items-start rounded border border-border bg-white p-3"
-          >
-            <div
-              className="mb-2 w-full bg-purple-600"
-              style={{ height: `${px}px` }}
-            />
-            <code className="text-xs font-medium">gap-{px}</code>
-            <span className="ds-caption text-muted">{px}px</span>
+      {/* ── Visual scale ─────────────────────────────────────── */}
+      <FadeIn>
+        <section className="not-prose">
+          <h2 className="mb-6 text-[20px] font-semibold tracking-tight text-[#1F1F23]">
+            The scale
+          </h2>
+          <div className="overflow-hidden rounded-[14px] border border-[#E4E5E9] bg-white">
+            {SPACING_STEPS.map((step, i) => (
+              <div
+                key={step.px}
+                className={[
+                  "group flex items-center gap-6 px-6 py-4 transition-colors duration-150 hover:bg-[#FAFAFB]",
+                  i !== SPACING_STEPS.length - 1 ? "border-b border-[#ECEDF0]" : "",
+                ].join(" ")}
+              >
+                <code className="w-[80px] shrink-0 font-mono text-[13px] text-[#1F1F23]">
+                  gap-{step.px}
+                </code>
+                <span className="w-[60px] shrink-0 text-[12px] font-medium tabular-nums text-[#5C616B]">
+                  {step.px}px
+                </span>
+                <div className="relative flex-1">
+                  <div
+                    className="h-2 rounded-full bg-[#6841E6] transition-all duration-200 group-hover:bg-[#582FD2]"
+                    style={{ width: `${step.px * 2}px`, maxWidth: "100%" }}
+                  />
+                </div>
+                <span className="w-[180px] shrink-0 text-right text-[12px] text-[#5C616B]">
+                  {step.label}
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </section>
+      </FadeIn>
 
-      <h3>Usage Guide</h3>
-      <table className="mt-4 w-full border-collapse">
-        <thead>
-          <tr className="border-b border-border">
-            <th className="py-2 text-left font-semibold">Context</th>
-            <th className="py-2 text-left font-semibold">Utility</th>
-            <th className="py-2 text-left font-semibold">Use</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            { context: "Micro gaps", utility: "gap-4", use: "Tiny spacing" },
-            { context: "Tight spacing", utility: "gap-8", use: "Icon padding, inline elements" },
-            { context: "Form fields", utility: "gap-12", use: "Small component padding" },
-            { context: "Standard", utility: "gap-16", use: "Default padding and gaps" },
-            { context: "Medium", utility: "gap-20", use: "Card gaps, medium spacing" },
-            { context: "Large", utility: "gap-24", use: "Card padding lg, section gaps" },
-            { context: "XL", utility: "gap-32", use: "Large component gaps" },
-            { context: "XXL", utility: "gap-48", use: "Section margins" },
-            { context: "Hero", utility: "gap-64", use: "Page sections" },
-          ].map((row) => (
-            <tr key={row.utility} className="border-b border-border">
-              <td className="py-2">{row.context}</td>
-              <td className="py-2 font-mono font-semibold">{row.utility}</td>
-              <td className="py-2 text-sm text-muted">{row.use}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* ── Component heights ────────────────────────────────── */}
+      <FadeIn>
+        <section className="not-prose mt-16">
+          <h2 className="mb-2 text-[20px] font-semibold tracking-tight text-[#1F1F23]">
+            Component heights
+          </h2>
+          <p className="mb-6 text-[14px] leading-relaxed text-[#5C616B]">
+            Fixed heights for interactive components. Match these — never
+            improvise.
+          </p>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+            {COMPONENT_HEIGHTS.map((c) => (
+              <div
+                key={c.px}
+                className="group flex flex-col items-start gap-4 rounded-[14px] border border-[#E4E5E9] bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C0C3CC] hover:shadow-[0_4px_16px_rgba(15,15,20,0.06)]"
+              >
+                <div
+                  className="w-full rounded-full bg-[#F5F3FF] transition-colors group-hover:bg-[#EAEAFD]"
+                  style={{ height: `${c.px}px` }}
+                />
+                <div>
+                  <code className="font-mono text-[13px] text-[#1F1F23]">
+                    h-{c.px}
+                  </code>
+                  <p className="mt-1 text-[12px] text-[#5C616B]">{c.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </FadeIn>
 
-      <h3>Component Sizing Scale</h3>
-      <table className="mt-4 w-full border-collapse">
-        <thead>
-          <tr className="border-b border-border">
-            <th className="py-2 text-left font-semibold">Utility</th>
-            <th className="py-2 text-left font-semibold">Pixels</th>
-            <th className="py-2 text-left font-semibold">Used by</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            { utility: "h-32", px: "32px", use: "Button xs" },
-            { utility: "h-40", px: "40px", use: "Button sm, TextInput sm" },
-            { utility: "h-44", px: "44px", use: "Switch md, InputGroup md" },
-            { utility: "h-48", px: "48px", use: "Button md, TextInput md" },
-            { utility: "h-56", px: "56px", use: "Button lg, TextInput lg" },
-            { utility: "h-64", px: "64px", use: "Button xl" },
-          ].map((row) => (
-            <tr key={row.utility} className="border-b border-border">
-              <td className="py-2 font-mono font-semibold">{row.utility}</td>
-              <td className="py-2">{row.px}</td>
-              <td className="py-2 text-sm text-muted">{row.use}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* ── Inter-component spacing ──────────────────────────── */}
+      <FadeIn>
+        <section className="not-prose mt-16">
+          <h2 className="mb-6 text-[20px] font-semibold tracking-tight text-[#1F1F23]">
+            Inter-component spacing
+          </h2>
+          <div className="overflow-hidden rounded-[14px] border border-[#E4E5E9] bg-white">
+            <table className="w-full">
+              <thead className="bg-[#FAFAFB]">
+                <tr>
+                  <th className="px-6 py-3 text-left text-[12px] font-semibold uppercase tracking-[0.06em] text-[#5C616B]">
+                    Between
+                  </th>
+                  <th className="px-6 py-3 text-left text-[12px] font-semibold uppercase tracking-[0.06em] text-[#5C616B]">
+                    Utility
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {INTERS.map((row, i) => (
+                  <tr
+                    key={row.between}
+                    className={[
+                      "transition-colors duration-150 hover:bg-[#FAFAFB]",
+                      i !== INTERS.length - 1 ? "border-t border-[#ECEDF0]" : "border-t border-[#ECEDF0]",
+                    ].join(" ")}
+                  >
+                    <td className="px-6 py-3.5 text-[14px] text-[#1F1F23]">
+                      {row.between}
+                    </td>
+                    <td className="px-6 py-3.5 font-mono text-[13px] text-[#5C616B]">
+                      {row.util}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </FadeIn>
 
-      <h2>Anti-patterns</h2>
-      <ul>
-        <li>
-          Don&apos;t use <code>gap-2</code> for 8px (old 4px base). Use{" "}
-          <code>gap-8</code> instead.
-        </li>
-        <li>
-          Don&apos;t use raw <code>px</code> values. Always use Tailwind utilities.
-        </li>
-        <li>
-          Don&apos;t use <code>var(--scale-*)</code> — these tokens have been
-          removed.
-        </li>
-      </ul>
-
-      <h2>Related</h2>
-      <ul>
-        <li>
-          <Link href="/foundations/radii">Border Radii</Link> — 9999px pill
-          buttons, 20px cards
-        </li>
-        <li>
-          <Link href="/foundations/color">Color</Link> — semantic palette
-        </li>
-      </ul>
+      {/* ── Related ──────────────────────────────────────────── */}
+      <FadeIn>
+        <section className="not-prose mt-16 rounded-[14px] border border-[#E4E5E9] bg-[#F5F3FF] p-8">
+          <h2 className="text-[18px] font-semibold tracking-tight text-[#1F1F23]">
+            Related foundations
+          </h2>
+          <p className="mt-2 max-w-[640px] text-[14px] leading-relaxed text-[#5C616B]">
+            Spacing rarely travels alone — pair with border radii and shadows for surface treatment.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href="/foundations/radii"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#6841E6] px-5 py-2 text-[13px] font-medium text-[#6841E6] transition-colors hover:bg-[#6841E6] hover:text-white"
+            >
+              Border radii
+            </Link>
+            <Link
+              href="/foundations/shadows"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#6841E6] px-5 py-2 text-[13px] font-medium text-[#6841E6] transition-colors hover:bg-[#6841E6] hover:text-white"
+            >
+              Shadows
+            </Link>
+          </div>
+        </section>
+      </FadeIn>
     </article>
   );
 }

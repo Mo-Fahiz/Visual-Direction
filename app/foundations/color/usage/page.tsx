@@ -6,7 +6,7 @@ import { PageTable } from "@/components/docs/PageTable";
 import { Section } from "@/components/docs/Section";
 
 export const metadata: Metadata = {
-  title: "Color · Usage",
+  title: "Colour · Usage",
 };
 
 export default function ColorUsagePage() {
@@ -143,7 +143,7 @@ export default function ColorUsagePage() {
       <p className="mt-10 text-sm text-muted">
         See also: <Link href="/foundations/color/tokens">Tokens</Link> ·{" "}
         <Link href="/foundations/color/code">Code</Link> ·{" "}
-        <Link href="/visual-direction">Visual direction</Link>
+        <Link href="/principles">About ACKO</Link>
       </p>
     </>
   );

@@ -10,7 +10,7 @@ import {
 } from "@/lib/color-tokens";
 
 export const metadata: Metadata = {
-  title: "Color · Tokens",
+  title: "Colour · Tokens",
 };
 
 export default function ColorTokensPage() {

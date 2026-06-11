@@ -1,36 +1,27 @@
-import { LastUpdated } from "./LastUpdated";
-
 type PageHeaderProps = {
   title: string;
   description?: string;
-  lastUpdated?: string;
-  /** Davies-style label with purple dot, e.g. "Page" */
+  /**
+   * Deprecated. The eyebrow chip (FOUNDATION / ABOUT ACKO / DESIGN SYSTEM)
+   * was removed across all pages. The prop is still accepted so existing
+   * call sites compile, but it is intentionally not rendered.
+   */
   eyebrow?: string;
+  /** Deprecated: kept for API compatibility but no longer rendered. */
+  lastUpdated?: string;
 };
 
-export function PageHeader({
-  title,
-  description,
-  lastUpdated,
-  eyebrow,
-}: PageHeaderProps) {
+export function PageHeader({ title, description }: PageHeaderProps) {
   return (
-    <header className="mb-10 border-b border-border pb-8">
-      {eyebrow ? (
-        <p className="ds-has-dot ds-caption mb-4 font-medium uppercase tracking-[0.1em] text-muted">
-          <span className="ds-br-dot" aria-hidden />
-          {eyebrow}
-        </p>
-      ) : null}
-      <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-[2.5rem] md:leading-tight">
+    <header className="mb-12 pb-8">
+      <h1 className="text-[32px] font-semibold leading-[40px] tracking-[-0.02em] text-[#1F1F23] md:text-[44px] md:leading-[52px]">
         {title}
       </h1>
       {description ? (
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[#5C616B] md:text-[17px] md:leading-[28px]">
           {description}
         </p>
       ) : null}
-      {lastUpdated ? <LastUpdated date={lastUpdated} className="mt-4" /> : null}
     </header>
   );
 }

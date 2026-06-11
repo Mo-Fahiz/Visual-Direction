@@ -8,32 +8,33 @@ export const metadata: Metadata = {
 
 export default function FoundationsIndexPage() {
   return (
-    <article className="doc-prose">
+    <article>
       <PageHeader
-        title="Foundations"
+        title="Design system"
         description="Visual and verbal building blocks. Specs here are authoritative; implement them in Figma and code in sync with this site."
-        lastUpdated="April 27, 2026"
       />
 
-      <ul className="not-prose space-y-3">
+      <ul className="not-prose grid gap-3 sm:grid-cols-2">
         {[
-          { href: "/foundations/color", title: "Color", desc: "Primitives, semantic tokens, layering model, theming, contrast." },
-          { href: "/foundations/typography", title: "Typography", desc: "Gotham for brand; Euclid Circular B for product." },
+          { href: "/foundations/color", title: "Colour", desc: "Primitives, semantic tokens, layering model, theming, contrast." },
+          { href: "/foundations/typography", title: "Typography", desc: "Euclid Circular B. Semibold for headings, Regular for body." },
           { href: "/foundations/spacing", title: "Spacing", desc: "Numeric scale for margins, padding, gaps, sizing." },
-          { href: "/foundations/radii", title: "Border Radii", desc: "Pills, cards, nested inset rule." },
+          { href: "/foundations/radii", title: "Border radii", desc: "Pills, cards, nested inset rule." },
           { href: "/foundations/shadows", title: "Shadows", desc: "Elevation hierarchy and semantic aliases." },
+          { href: "/ui-kit", title: "Atoms", desc: "Buttons, inputs, badges — primitive components." },
+          { href: "/patterns", title: "Molecules", desc: "Composed patterns and recurring layouts." },
           { href: "/foundations/motion", title: "Motion", desc: "Easing curves, keyframes, and performance rules." },
           { href: "/foundations/imagery", title: "Imagery", desc: "Three modes and brief discipline for consistency." },
           { href: "/foundations/iconography", title: "Iconography", desc: "Stroke-rounded benchmark and usage." },
-          { href: "/foundations/voice", title: "Voice & tone", desc: "How principles read in words." },
+          { href: "/foundations/voice", title: "Voice and Tone", desc: "How ACKO sounds across UI, email, and support." },
         ].map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}
-              className="block rounded-xl border border-border bg-white p-4 shadow-sm transition hover:bg-[#fafafa]"
+              className="block h-full rounded-[14px] border border-[#E4E5E9] bg-white p-5 transition hover:border-[#D0D3DA] hover:bg-[#FAFAFB]"
             >
-              <span className="font-semibold text-accent">{item.title}</span>
-              <span className="mt-1 block text-sm text-[#333]">{item.desc}</span>
+              <span className="text-[15px] font-semibold text-[#1F1F23]">{item.title}</span>
+              <span className="mt-1 block text-[13px] leading-relaxed text-[#5C616B]">{item.desc}</span>
             </Link>
           </li>
         ))}

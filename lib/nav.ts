@@ -1,55 +1,52 @@
 export type NavItem = {
   title: string;
   href: string;
-  /** Davies-style section index, e.g. "01" */
+  /** Davies-style section index, e.g. "01". Optional; new IA drops indices. */
   index?: string;
   children?: NavItem[];
+  /** If true, the section starts open by default. Otherwise collapsed. */
+  defaultOpen?: boolean;
 };
 
+/**
+ * Primary navigation — matches the floating sidebar reference design.
+ * About ACKO is the principles page. Design system groups the foundations
+ * + atoms/molecules. Media collects imagery/iconography/motion/asset work.
+ */
 export const primaryNav: NavItem[] = [
-  { title: "Get started", href: "/get-started", index: "01" },
-  { title: "Visual direction", href: "/visual-direction", index: "02" },
+  { title: "About ACKO", href: "/principles" },
   {
-    title: "Principles",
-    href: "/principles",
-    index: "03",
-    children: [
-      { title: "Clear over clever", href: "/principles/clear-over-clever" },
-      { title: "Effortless by default", href: "/principles/effortless-by-default" },
-      { title: "Present when it matters", href: "/principles/present-when-it-matters" },
-      {
-        title: "Respectful of the user's time",
-        href: "/principles/respectful-of-time",
-      },
-    ],
-  },
-  {
-    title: "Foundations",
+    title: "Design system",
     href: "/foundations",
-    index: "04",
+    defaultOpen: true,
     children: [
-      { title: "Color", href: "/foundations/color" },
+      { title: "Colour", href: "/foundations/color" },
       { title: "Typography", href: "/foundations/typography" },
       { title: "Spacing", href: "/foundations/spacing" },
-      { title: "Border Radii", href: "/foundations/radii" },
+      { title: "Border radii", href: "/foundations/radii" },
       { title: "Shadows", href: "/foundations/shadows" },
-      { title: "Motion", href: "/foundations/motion" },
-      { title: "Imagery", href: "/foundations/imagery" },
-      { title: "Iconography", href: "/foundations/iconography" },
-      { title: "Voice & tone", href: "/foundations/voice" },
+      { title: "Atoms", href: "/ui-kit" },
+      { title: "Molecules", href: "/patterns" },
     ],
   },
-  { title: "Brand story", href: "/brand-story", index: "05" },
-  { title: "Develop", href: "/develop", index: "06" },
+  {
+    title: "Media",
+    href: "/foundations/imagery",
+    defaultOpen: false,
+    children: [
+      { title: "Imagery", href: "/foundations/imagery" },
+      { title: "Iconography", href: "/foundations/iconography" },
+      { title: "Motion", href: "/foundations/motion" },
+      { title: "Asset creation", href: "/foundations/asset-creation" },
+    ],
+  },
+  { title: "Voice and Tone", href: "/foundations/voice" },
+  { title: "Accessibility", href: "/foundations/accessibility" },
 ];
 
-/** Separate track — UI implementation, not the core principles journey */
-export const kitNav: NavItem[] = [
-  { title: "UI kit", href: "/ui-kit" },
-  { title: "Patterns", href: "/patterns" },
-];
+/** Kept for backwards compatibility with older imports; intentionally empty. */
+export const kitNav: NavItem[] = [];
 
 export const resourceNav: NavItem[] = [
-  { title: "Roadmap", href: "/resources/roadmap" },
   { title: "Changelog", href: "/resources/changelog" },
 ];

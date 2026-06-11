@@ -1,25 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { kitNav, primaryNav, resourceNav } from "@/lib/nav";
+import { primaryNav, resourceNav } from "@/lib/nav";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 border-b border-border bg-sidebar/95 px-4 py-3 backdrop-blur md:hidden">
+    <div className="sticky top-0 z-50 border-b border-[#ECEDF0] bg-white/95 px-4 py-3 backdrop-blur md:hidden">
       <div className="flex items-center justify-between">
         <Link
           href="/"
-          className="text-[15px] font-semibold tracking-tight text-foreground"
+          className="flex items-center gap-2"
           onClick={() => setOpen(false)}
         >
-          ACKO Design System
+          <Image src="/acko-logo.svg" alt="ACKO" width={64} height={20} />
+          <span className="text-[14px] font-semibold tracking-tight text-[#1F1F23]">
+            Visual Standards
+          </span>
         </Link>
         <button
           type="button"
-          className="ds-caption rounded-[10px] border border-border px-4 py-2 font-medium uppercase tracking-wide text-foreground"
+          className="rounded-[10px] border border-[#E4E5E9] px-3 py-1.5 text-[12px] font-medium text-[#1F1F23]"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
         >
@@ -27,24 +31,21 @@ export function MobileNav() {
         </button>
       </div>
       {open ? (
-        <div className="mt-4 max-h-[70vh] space-y-4 overflow-y-auto pb-4">
-          {[...primaryNav, ...kitNav, ...resourceNav].map((item) => (
+        <div className="mt-4 max-h-[70vh] space-y-3 overflow-y-auto pb-4">
+          {[...primaryNav, ...resourceNav].map((item) => (
             <div key={item.href}>
               <Link
                 href={item.href}
-                className="flex items-start gap-2 py-1 font-medium text-accent"
+                className="block py-1 text-[14px] font-medium text-[#1F1F23]"
                 onClick={() => setOpen(false)}
               >
-                {item.index ? (
-                  <span className="ds-nav-prefix pt-0.5">{item.index} /</span>
-                ) : null}
-                <span>{item.title}</span>
+                {item.title}
               </Link>
               {item.children?.map((c) => (
                 <Link
                   key={c.href}
                   href={c.href}
-                  className="ds-caption block py-1.5 pl-7 text-[#333]"
+                  className="block py-1 pl-4 text-[13px] text-[#5C616B]"
                   onClick={() => setOpen(false)}
                 >
                   {c.title}

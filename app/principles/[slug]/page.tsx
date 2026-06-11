@@ -35,7 +35,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getPrinciple(slug);
-  if (!p) return { title: "Principle" };
+  if (!p) return { title: "Trait" };
   return { title: p.shortTitle };
 }
 
@@ -49,11 +49,36 @@ export default async function PrincipleDetailPage({ params }: Props) {
 
   return (
     <article className="doc-prose">
+      {/* Back to /principles — keeps deep-linked detail pages reversible. */}
+      <div className="not-prose mb-8">
+        <Link
+          href="/principles"
+          className="inline-flex items-center gap-2 text-[13px] font-medium text-[#5C616B] transition-colors hover:text-[#6841E6]"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden
+            className="-ml-0.5"
+          >
+            <path
+              d="M8.75 3.5 5.25 7l3.5 3.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Back to About ACKO
+        </Link>
+      </div>
+
       <PageHeader
         eyebrow={p.tagline}
         title={p.title}
         description={p.definition}
-        lastUpdated="April 27, 2026"
       />
 
       <div className="not-prose mt-2">
@@ -76,12 +101,12 @@ export default async function PrincipleDetailPage({ params }: Props) {
       </section>
 
       <section>
-        <h2>Precision vs warmth</h2>
+        <h2>In context</h2>
         <p>
-          <strong>Precision:</strong> {p.precisionVsWarmth.precision}
+          <strong>Product:</strong> {p.inContext.product}
         </p>
         <p>
-          <strong>Warmth:</strong> {p.precisionVsWarmth.warmth}
+          <strong>Marketing:</strong> {p.inContext.marketing}
         </p>
       </section>
 
@@ -89,7 +114,7 @@ export default async function PrincipleDetailPage({ params }: Props) {
         <h2>In the product</h2>
         <p className="text-muted">
           A real comparison of two product moments — the anti-pattern on the left,
-          the principle applied on the right.
+          the trait applied on the right.
         </p>
         {visual && (
           <DoDontVisual
@@ -122,13 +147,10 @@ export default async function PrincipleDetailPage({ params }: Props) {
         <h2>Related</h2>
         <ul>
           <li>
-            <Link href="/principles">All principles</Link>
+            <Link href="/principles">All ACKO traits</Link>
           </li>
           <li>
-            <Link href="/visual-direction">Visual direction</Link>
-          </li>
-          <li>
-            <Link href="/foundations">Foundations</Link>
+            <Link href="/foundations">Design system</Link>
           </li>
         </ul>
       </section>
