@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { primaryNav, resourceNav, type NavItem } from "@/lib/nav";
+import { assetPath } from "@/lib/base-path";
 
 /* ──────────────────────────────────────────────────────────────────
  * Chevron icon (rotates when expanded)
@@ -159,7 +160,7 @@ export function Sidebar() {
         className="block px-5 pt-5 pb-3 transition-opacity hover:opacity-80"
       >
         <Image
-          src="/acko-logo.svg"
+          src={assetPath("/acko-logo.svg")}
           alt="ACKO"
           width={92}
           height={28}

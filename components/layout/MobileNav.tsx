@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { primaryNav, resourceNav } from "@/lib/nav";
+import { assetPath } from "@/lib/base-path";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -16,9 +17,9 @@ export function MobileNav() {
           className="flex items-center gap-2"
           onClick={() => setOpen(false)}
         >
-          <Image src="/acko-logo.svg" alt="ACKO" width={64} height={20} />
+          <Image src={assetPath("/acko-logo.svg")} alt="ACKO" width={64} height={20} />
           <span className="text-[14px] font-semibold tracking-tight text-[#1F1F23]">
-            Visual Standards
+            Design Standards
           </span>
         </Link>
         <button
