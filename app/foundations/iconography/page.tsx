@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/docs/PageHeader";
 import { FadeIn } from "@/components/docs/FadeIn";
 import { IconLibraryGrid } from "./IconLibraryGrid";
 import type { IconEntry } from "./IconLibraryGrid";
+import { assetPath } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "Icons",
@@ -29,12 +30,12 @@ async function getIconManifest(): Promise<IconManifest> {
 
 const features = [
   {
-    image: "/images/cards/rounded-stroke.svg",
+    image: assetPath("/images/cards/rounded-stroke.svg"),
     title: "Rounded stroke",
     desc: "Every glyph drawn on a shared 24px grid with a 1.5px stroke and rounded line caps. Friendly, never sharp.",
   },
   {
-    image: "/images/cards/scalability.svg",
+    image: assetPath("/images/cards/scalability.svg"),
     title: "Scalability",
     desc: "Vector-first. Renders crisp from 16px UI labels to 96px hero illustrations without losing the line weight.",
   },

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeIn } from "@/components/docs/FadeIn";
 import DotGrid from "@/components/DotGrid";
+import { assetPath } from "@/lib/base-path";
 
 /* ── R2 icon helpers ─────────────────────────────────────────────── */
 const ICON_BUCKET = "https://pub-5a33ff699b8d4e15a765e8394fbc6d74.r2.dev";
@@ -23,25 +24,25 @@ const quickStart = [
     title: "About ACKO",
     desc: "The brand personality and the four traits that shape every decision.",
     href: "/principles",
-    image: "/images/cards/about-acko.svg",
+    image: assetPath("/images/cards/about-acko.svg"),
   },
   {
     title: "Design system",
     desc: "Colour, typography, spacing, radii, shadows — the building blocks.",
     href: "/foundations",
-    image: "/images/cards/design-system.svg",
+    image: assetPath("/images/cards/design-system.svg"),
   },
   {
     title: "Voice and Tone",
     desc: "How ACKO sounds across UI, email, and support.",
     href: "/foundations/voice",
-    image: "/images/cards/voice-and-tone.svg",
+    image: assetPath("/images/cards/voice-and-tone.svg"),
   },
   {
     title: "Accessibility",
     desc: "WCAG AA baseline and the rules every screen inherits.",
     href: "/foundations/accessibility",
-    image: "/images/cards/accessibility.svg",
+    image: assetPath("/images/cards/accessibility.svg"),
   },
 ];
 
