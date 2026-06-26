@@ -88,6 +88,8 @@ export default async function PrincipleDetailPage({ params }: Props) {
           brief={p.hero.brief}
           mood={p.hero.mood}
           color={p.hero.color}
+          src={p.hero.src}
+          alt={p.hero.description}
         />
       </div>
 

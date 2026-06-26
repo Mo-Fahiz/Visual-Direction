@@ -1,104 +1,97 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/docs/PageHeader";
+import Link from "next/link";
 import { FadeIn } from "@/components/docs/FadeIn";
-import { molecules } from "@/lib/acko-tokens";
+import { PageHeader } from "@/components/docs/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Molecules",
+  title: "Patterns",
 };
 
-export default function MoleculesPage() {
+const priorityMolecules = [
+  { href: "/patterns/card", title: "Card", desc: "The most common container. Surfaces, padding, and inner radii." },
+  { href: "/patterns/dialog", title: "Dialog", desc: "Modal interactions, focus management, and dismissal." },
+  { href: "/patterns/dropdown", title: "Dropdown", desc: "Menu, select, and combobox patterns — and when to use each." },
+  { href: "/patterns/tabs", title: "Tabs", desc: "Variants, URL-syncing, and keyboard navigation." },
+  { href: "/patterns/toast", title: "Toast", desc: "Timing, placement, and the rules of disposable feedback." },
+  { href: "/patterns/form-field", title: "Form field", desc: "Label, input, helper, error — the field unit and its validation pattern." },
+];
+
+const pagePatterns = [
+  { href: "/patterns/pages/onboarding", title: "Onboarding", desc: "Linear stepper with progress indicator and one question per step." },
+  { href: "/patterns/pages/checkout", title: "Checkout", desc: "Summary, trust signals, and the always-visible total." },
+  { href: "/patterns/pages/policy-detail", title: "Policy detail", desc: "Sidebar + content layout with renew and claim actions." },
+  { href: "/patterns/pages/empty-state", title: "Empty state", desc: "Illustration, headline, description, single CTA." },
+  { href: "/patterns/pages/error", title: "Error page", desc: "404 and 500 patterns with friendly recovery." },
+  { href: "/patterns/pages/settings", title: "Settings", desc: "Grouped sections, toggle preferences, save via toast." },
+];
+
+function CardGrid({
+  items,
+}: {
+  items: { href: string; title: string; desc: string }[];
+}) {
+  return (
+    <ul className="not-prose grid gap-3 sm:grid-cols-2">
+      {items.map((item) => (
+        <li key={item.href}>
+          <Link
+            href={item.href}
+            className="block h-full rounded-[14px] border border-[#E4E5E9] bg-white p-5 transition hover:border-[#D0D3DA] hover:bg-[#FAFAFB]"
+          >
+            <span className="text-[15px] font-semibold text-[#1F1F23]">
+              {item.title}
+            </span>
+            <span className="mt-1 block text-[13px] leading-relaxed text-[#5C616B]">
+              {item.desc}
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function PatternsIndexPage() {
   return (
     <article>
       <PageHeader
-        eyebrow="Design system"
-        title="Molecules"
-        description="Composed components built on the atoms. Every entry below maps to a published package in the live ACKO design system."
+        title="Patterns"
+        description="Components composed together, and the page layouts they assemble into. Each entry below carries anatomy, props, behaviour, and content guidelines."
       />
 
-      {/* ── About this page ─────────────────────────────────── */}
-      <FadeIn>
-        <section className="not-prose mb-12 rounded-[14px] border border-[#E4E5E9] bg-white p-6">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6841E6]">
-            Source of truth
-          </p>
-          <p className="mt-2 text-[14px] leading-relaxed text-[#1F1F23]">
-            Specs, props, and visual states live in the live{" "}
-            <a
-              href="https://mo-fahiz.github.io/Acko-Design-system/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-[#6841E6] hover:underline"
-            >
-              ACKO Design System
-            </a>
-            . The list below mirrors the{" "}
-            <code className="rounded bg-[#F5F5F5] px-1.5 py-0.5 text-[12px] text-[#1F1F23]">
-              /packages
-            </code>{" "}
-            tree in the repo — when a new molecule ships, add it here too.
-          </p>
-        </section>
-      </FadeIn>
-
-      {/* ── Molecule inventory ──────────────────────────────── */}
       <FadeIn>
         <section className="not-prose">
-          <div className="mb-6">
-            <h2 className="text-[20px] font-semibold tracking-tight text-[#1F1F23]">
-              The library
-            </h2>
-            <p className="mt-2 text-[14px] leading-relaxed text-[#5C616B]">
-              {molecules.length} molecules currently published.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[14px] border border-[#E4E5E9] bg-[#ECEDF0] sm:grid-cols-2 lg:grid-cols-3">
-            {molecules.map((m) => (
-              <article
-                key={m.pkg}
-                className="bg-white p-5 transition-colors duration-200 hover:bg-[#FAFAFB]"
-              >
-                <p className="text-[15px] font-semibold text-[#1F1F23]">
-                  {m.name}
-                </p>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#5C616B]">
-                  {m.desc}
-                </p>
-                <p className="mt-3 font-mono text-[11px] text-[#8F8E92]">
-                  {m.pkg}
-                </p>
-              </article>
-            ))}
-          </div>
+          <h2 className="mb-6 text-[20px] font-semibold tracking-tight text-[#1F1F23]">
+            Molecules
+          </h2>
+          <CardGrid items={priorityMolecules} />
         </section>
       </FadeIn>
 
-      {/* ── Cross-link ──────────────────────────────────────── */}
+      <FadeIn>
+        <section className="not-prose mt-16">
+          <h2 className="mb-6 text-[20px] font-semibold tracking-tight text-[#1F1F23]">
+            Page patterns
+          </h2>
+          <CardGrid items={pagePatterns} />
+        </section>
+      </FadeIn>
+
       <FadeIn>
         <section className="not-prose mt-16 rounded-[14px] border border-[#E4E5E9] bg-[#F5F3FF] p-8">
           <h2 className="text-[18px] font-semibold tracking-tight text-[#1F1F23]">
             Looking for atoms?
           </h2>
           <p className="mt-2 max-w-[640px] text-[14px] leading-relaxed text-[#5C616B]">
-            Atoms are the primitive components — Button, Input, Badge, Avatar,
-            and friends. They&apos;re documented separately.
+            Buttons, inputs, badges, and other primitives live in the atoms
+            inventory.
           </p>
-          <a
+          <Link
             href="/ui-kit"
             className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-[#6841E6] px-5 py-2 text-[13px] font-medium text-[#6841E6] transition-colors hover:bg-[#6841E6] hover:text-white"
           >
             Browse atoms
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-              <path
-                d="M2.5 6h7M7 3.5L9.5 6 7 8.5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
+          </Link>
         </section>
       </FadeIn>
     </article>

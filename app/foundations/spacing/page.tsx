@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { DocImage } from "@/components/docs/DocImage";
+import { assetPath } from "@/lib/base-path";
 import { FadeIn } from "@/components/docs/FadeIn";
 
 export const metadata: Metadata = {
@@ -160,6 +163,33 @@ export default function SpacingPage() {
               </tbody>
             </table>
           </div>
+        </section>
+      </FadeIn>
+
+      {/* ── Do / Don't ──────────────────────────────────────── */}
+      <FadeIn>
+        <section className="not-prose mt-16">
+          <h2 className="mb-2 text-[20px] font-semibold tracking-tight text-[#1F1F23]">
+            Do and don&apos;t
+          </h2>
+          <p className="mb-6 max-w-[640px] text-[14px] leading-relaxed text-[#5C616B]">
+            Spacing is the easiest foundation to fudge — and the easiest to spot when it goes wrong.
+          </p>
+          <DoDont
+            doItems={[
+              "Use tokens from the scale — gap-16, p-24, h-48.",
+              "Keep consistent gaps within a group (e.g. all form fields on a page).",
+              "Use larger gaps between groups than within them.",
+              "Match component heights to the scale — never improvise.",
+            ]}
+            dontItems={[
+              "Eyeball spacing values — every value lives on the scale.",
+              "Use inconsistent padding within the same component type.",
+              "Zero-pad content against edges — give it breathing room.",
+              "Add custom step values to make something fit — adjust the layout instead.",
+            ]}
+          />
+          <DocImage src={assetPath("/images/Page_spacing/card-spacing.png")} alt="Card group comparison. Left: consistent gap-16 between cards and uniform padding. Right: same group with uneven eyeballed gaps and inconsistent padding — marked incorrect." ratio="4/3" background="none" />
         </section>
       </FadeIn>
 

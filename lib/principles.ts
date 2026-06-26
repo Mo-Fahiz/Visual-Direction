@@ -14,12 +14,19 @@ export type Principle = {
     mood: string[];
     /** Deep brand-aligned background colour for the placeholder. */
     color: string;
+    /** Resolved src path for the real photograph (replaces placeholder when set). */
+    src?: string;
   };
   /** One-line summary printed on the principles index card. */
   tagline: string;
   /** Caption shown under the rendered visual Don't / Do panels. */
   visualCaptions: { not: string; yes: string };
 };
+
+import { assetPath } from "./base-path";
+
+/* Resolved at build time — paths relative to /public */
+const PRINCIPLE_IMG = (file: string) => assetPath(`/images/Page_principles/${file}`);
 
 export const principles: Principle[] = [
   {
@@ -61,6 +68,7 @@ export const principles: Principle[] = [
         "Couple sitting on sofa reading phone together, ACKO policy visible on screen. Living room of a middle-class Indian apartment. Evening lamp light. The mood is trust and understanding. Shot at eye level, not from above.",
       mood: ["evening lamp", "couple reading", "eye level", "trust"],
       color: "#0C2E2A",
+      src: PRINCIPLE_IMG("clear-over-clever.png"),
     },
     visualCaptions: {
       not: "Hidden asterisks, vague disclaimers, gradient-bestseller noise — clarity is sacrificed for conversion theatre.",
@@ -105,6 +113,7 @@ export const principles: Principle[] = [
         "Young professional standing next to their car, phone in hand, completing purchase. The car number plate is visible. Urban Indian residential street. Quick, casual moment — not a photoshoot. Bright daylight.",
       mood: ["quick moment", "daylight", "casual", "urban street"],
       color: "#0C1A3D",
+      src: PRINCIPLE_IMG("effortless-by-default.png"),
     },
     visualCaptions: {
       not: "Eight required fields on step 1 of 7 — the form punishes the customer for choosing us.",
@@ -149,6 +158,7 @@ export const principles: Principle[] = [
         "Woman on a phone call in a garage or hospital waiting area, expression showing relief. Soft natural light. The phone call is the story — someone is helping. Warm, documentary-style. Not staged.",
       mood: ["relief", "phone call", "garage/hospital", "documentary"],
       color: "#2A1A0A",
+      src: PRINCIPLE_IMG("present-when-it-matters.png"),
     },
     visualCaptions: {
       not: "A faceless ticket ID and a 7–14 day SLA. The customer feels processed, not supported.",
@@ -193,6 +203,7 @@ export const principles: Principle[] = [
         "Phone on wooden breakfast table next to chai and newspaper. Screen shows one ACKO renewal card. Morning light from a window. Indian kitchen/dining area. The feeling is calm start to the day.",
       mood: ["morning chai", "one notification", "wooden table", "calm"],
       color: "#1A0F2E",
+      src: PRINCIPLE_IMG("respectful-of-time.png"),
     },
     visualCaptions: {
       not: "Three competing banners shouting for attention before the customer even sees their policy.",

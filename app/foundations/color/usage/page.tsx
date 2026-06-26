@@ -13,15 +13,15 @@ export default function ColorUsagePage() {
   return (
     <>
       <Section
-        id="when-to-use-semantic"
-        title="When to use semantic tokens"
-        description="Always. Components must read semantic tokens — never primitives. The only exception is when you are *defining* a semantic token in the theme layer."
+        id="token-rules"
+        title="Token rules"
+        description="Components must read theme tokens — never primitives. The only exception is when you are defining a token in the theme layer."
       >
         <DoDont
           doItems={[
             "Reference --color-primary, --color-surface, --color-text-default, --color-error.",
             "Pick the token whose role matches your intent — error text always uses --color-text-error, even if it happens to look right with --color-text-primary today.",
-            "When a value is missing, propose a new semantic token rather than reaching for a primitive.",
+            "When a value is missing, propose a new theme token rather than reaching for a primitive.",
           ]}
           dontItems={[
             "Reference --purple-600 or any other primitive in component CSS.",

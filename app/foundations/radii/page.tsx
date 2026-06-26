@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { DocImage } from "@/components/docs/DocImage";
+import { assetPath } from "@/lib/base-path";
 import { FadeIn } from "@/components/docs/FadeIn";
 
 export const metadata: Metadata = {
@@ -135,6 +138,33 @@ export default function RadiiPage() {
               </div>
             </div>
           </div>
+        </section>
+      </FadeIn>
+
+      {/* ── Do / Don't ──────────────────────────────────────── */}
+      <FadeIn>
+        <section className="not-prose mt-16">
+          <h2 className="mb-2 text-[20px] font-semibold tracking-tight text-[#1F1F23]">
+            Do and don&apos;t
+          </h2>
+          <p className="mb-6 max-w-[640px] text-[14px] leading-relaxed text-[#5C616B]">
+            Radii carry intent. Sharp corners feel rigid; mismatched radii feel sloppy.
+          </p>
+          <DoDont
+            doItems={[
+              "Use pills (radius-full) for buttons and inputs.",
+              "Use 20px (radius-4xl) for cards, dialogs, drawers, and toasts.",
+              "Apply the nested-inset rule (inner = outer − padding).",
+              "Use 32px (radius-6xl) for large desktop cards (≥ 1024px).",
+            ]}
+            dontItems={[
+              "Use sharp corners on primary actions — they feel rigid and unbranded.",
+              "Mix radius values on the same surface (e.g. 4px badge inside a 20px card).",
+              "Use a radius larger than half the element height — except pills.",
+              "Ignore the nested-inset rule — it's what keeps surfaces feeling resolved.",
+            ]}
+          />
+          <DocImage src={assetPath("/images/Page_radii/nested-radius.png")} alt="A card showing correct nested radius (4px inner inside 20px outer with 16px padding) vs incorrect (20px inner that visually clashes with the outer)." ratio="4/3" background="none" />
         </section>
       </FadeIn>
 

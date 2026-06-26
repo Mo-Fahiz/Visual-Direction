@@ -14,7 +14,7 @@ export default function ColorLayout({ children }: { children: ReactNode }) {
     <article className="doc-prose">
       <PageHeader
         title="Colour"
-        description="A layered token architecture: a primitive palette feeds semantic tokens, and components only ever consume the semantic layer. This page is the source of truth for what each colour means and where it shows up."
+        description="The ACKO primitive palette and how it flows through themes into product UI. This page is the source of truth for what each colour means and where it shows up."
       />
       <PageTabs tabs={tabs} />
       {children}

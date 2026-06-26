@@ -3,6 +3,8 @@ import Link from "next/link";
 import { CodeChip } from "@/components/docs/CodeChip";
 import { DoDont } from "@/components/docs/DoDont";
 import { PageTable } from "@/components/docs/PageTable";
+import { DocImage } from "@/components/docs/DocImage";
+import { assetPath } from "@/lib/base-path";
 import { Section } from "@/components/docs/Section";
 import { styleVariantRows, textColorIntents, semanticTypeStyles, sanctionedOverrides } from "@/lib/typography-tokens";
 
@@ -139,6 +141,28 @@ export default function TypographyUsagePage() {
           </Link>{" "}
           shows how fonts load; badge and marketing exceptions follow component specs.
         </p>
+      </Section>
+
+      <Section
+        id="do-dont"
+        title="Do and don't"
+        description="Most typography mistakes come from reaching outside the system — custom sizes, off-scale weights, or all caps for body."
+      >
+        <DoDont
+          doItems={[
+            "Use the semantic styles — heading1, bodyMd, labelMd.",
+            "Use sentence case for all UI text — Get a quote, not Get A Quote.",
+            "Use Medium (500) for emphasis in body, Bold (700) for display only.",
+            "Stick to the 15-step size ramp — no one-off sizes.",
+          ]}
+          dontItems={[
+            "Use ALL CAPS for body text or anything longer than a label.",
+            "Mix font weights randomly across a single surface.",
+            "Use Light (300) for body copy — it's for display only.",
+            "Invent custom sizes outside the ramp.",
+          ]}
+        />
+        <DocImage src={assetPath("/images/Page_typography-usage/type-hierarchy.png")} alt="Card header comparison. Left: correct card with heading3 title, bodyMd description, sentence-case labels. Right: same card with random sizes, mixed weights, and ALL CAPS body text — marked incorrect." ratio="4/3" background="none" />
       </Section>
     </>
   );

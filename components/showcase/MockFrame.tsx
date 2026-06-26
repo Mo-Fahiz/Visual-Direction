@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 type Props = {
@@ -13,6 +14,10 @@ type Props = {
   color?: string;
   /** Hide the meta overlay (used when something custom is layered on top). */
   overlay?: boolean;
+  /** When provided, renders a real photograph instead of the placeholder tint. */
+  src?: string;
+  /** Alt text for the real photograph. Required when src is provided. */
+  alt?: string;
   children?: ReactNode;
 };
 
@@ -28,6 +33,8 @@ export function MockFrame({
   mood,
   color = "#1a1a1a",
   overlay = true,
+  src,
+  alt,
   children,
 }: Props) {
   return (
@@ -35,25 +42,45 @@ export function MockFrame({
       className="relative w-full overflow-hidden rounded-[20px]"
       style={{ aspectRatio: aspect, background: color }}
     >
+      {/* Real photograph — fills the frame when src is provided */}
+      {src && (
+        <Image
+          src={src}
+          alt={alt ?? description ?? ""}
+          fill
+          sizes="(max-width: 768px) 100vw, 1100px"
+          className="object-cover object-center"
+          priority
+        />
+      )}
+
+      {/* Colour gradient overlay — always present; lighter when real image shown */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `linear-gradient(135deg, ${color} 0%, ${color}DD 40%, ${color}99 100%)`,
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E\")",
-          backgroundSize: "128px",
+          background: src
+            ? `linear-gradient(to bottom, transparent 40%, ${color}CC 100%)`
+            : `linear-gradient(135deg, ${color} 0%, ${color}DD 40%, ${color}99 100%)`,
         }}
       />
 
+      {/* Film-grain texture — placeholder only */}
+      {!src && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E\")",
+            backgroundSize: "128px",
+          }}
+        />
+      )}
+
       <div className="relative flex h-full flex-col justify-end p-6 md:p-8">
         {children}
-        {overlay && (description || brief || mood) && (
+        {/* Show placeholder metadata only when no real image is present */}
+        {!src && overlay && (description || brief || mood) && (
           <div className="mt-auto">
             <div className="mb-2 inline-block rounded-md border border-white/10 bg-white/10 px-3 py-1 backdrop-blur-md">
               <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-white/60">
