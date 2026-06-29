@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { Breadcrumbs } from "@/components/docs/Breadcrumbs";
 import { Section } from "@/components/docs/Section";
 import { sceneLibrary } from "@/lib/asset-tokens";
 
@@ -18,6 +19,7 @@ const categories = [
 export default function ScenesPage() {
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={[{ label: "Media, content & voice" }, { label: "Asset creation", href: "/foundations/asset-creation" }, { label: "Scene library" }]} />
       <PageHeader
         eyebrow="Foundation · Asset creation"
         title="Scene library"

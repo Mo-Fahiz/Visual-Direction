@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { primaryNav, resourceNav } from "@/lib/nav";
+import { primaryNav } from "@/lib/nav";
 import { assetPath } from "@/lib/base-path";
 
 export function MobileNav() {
@@ -33,19 +33,25 @@ export function MobileNav() {
       </div>
       {open ? (
         <div className="mt-4 max-h-[70vh] space-y-3 overflow-y-auto pb-4">
-          {[...primaryNav, ...resourceNav].map((item) => (
-            <div key={item.href}>
-              <Link
-                href={item.href}
-                className="block py-1 text-[14px] font-medium text-[#1F1F23]"
-                onClick={() => setOpen(false)}
-              >
-                {item.title}
-              </Link>
+          {primaryNav.map((item) => (
+            <div key={item.title}>
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  className="block py-1 text-[14px] font-medium text-[#1F1F23]"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.title}
+                </Link>
+              ) : (
+                <p className="block py-1 text-[14px] font-medium text-[#1F1F23]">
+                  {item.title}
+                </p>
+              )}
               {item.children?.map((c) => (
                 <Link
                   key={c.href}
-                  href={c.href}
+                  href={c.href ?? "#"}
                   className="block py-1 pl-4 text-[13px] text-[#5C616B]"
                   onClick={() => setOpen(false)}
                 >

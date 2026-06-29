@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { Breadcrumbs } from "@/components/docs/Breadcrumbs";
 import { PageTable } from "@/components/docs/PageTable";
 import { DocImage } from "@/components/docs/DocImage";
 import { assetPath } from "@/lib/base-path";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function SettingsPatternPage() {
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={[{ label: "Components & patterns" }, { label: "Page patterns" }, { label: "Settings" }]} />
       <PageHeader
         title="Settings"
         description="Grouped preferences with inline saves. Sidebar + content layout, toggle switches for binary preferences, save confirmation via toast."

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { primaryNav, resourceNav, type NavItem } from "@/lib/nav";
+import { primaryNav, type NavItem } from "@/lib/nav";
 import { assetPath } from "@/lib/base-path";
 
 /* ──────────────────────────────────────────────────────────────────
@@ -45,6 +45,7 @@ function LeafLink({
   active: boolean;
   depth?: number;
 }) {
+  if (!item.href) return null;
   return (
     <Link
       href={item.href}
@@ -69,7 +70,7 @@ function GroupItem({ item }: { item: NavItem }) {
 
   // open by default if defaultOpen flag set OR pathname starts with one of the children
   const childActive = item.children?.some(
-    (c) => pathname === c.href || pathname.startsWith(c.href + "/")
+    (c) => Boolean(c.href) && (pathname === c.href || pathname.startsWith(c.href + "/"))
   );
   const [open, setOpen] = useState<boolean>(
     Boolean(item.defaultOpen) || Boolean(childActive)
@@ -94,12 +95,13 @@ function GroupItem({ item }: { item: NavItem }) {
       {open && item.children ? (
         <div className="mt-0.5 space-y-px">
           {item.children.map((child) => {
-            const active =
-              pathname === child.href ||
-              pathname.startsWith(child.href + "/");
+            const active = Boolean(
+              child.href &&
+                (pathname === child.href || pathname.startsWith(child.href + "/"))
+            );
             return (
               <LeafLink
-                key={child.href}
+                key={child.href ?? child.title}
                 item={child}
                 active={active}
                 depth={1}
@@ -121,6 +123,9 @@ function TopLevelEntry({ item }: { item: NavItem }) {
   if (item.children && item.children.length > 0) {
     return <GroupItem item={item} />;
   }
+
+  // Leaf top-level (rare in the new IA — groups dominate).
+  if (!item.href) return null;
 
   const active =
     pathname === item.href ||
@@ -177,20 +182,9 @@ export function Sidebar() {
       <nav className="flex-1 overflow-y-auto px-3 pb-3">
         <div className="space-y-px">
           {primaryNav.map((item) => (
-            <TopLevelEntry key={item.href} item={item} />
+            <TopLevelEntry key={item.title} item={item} />
           ))}
         </div>
-
-        {resourceNav.length > 0 ? (
-          <>
-            <div className="mx-2 my-4 h-px bg-[#ECEDF0]" aria-hidden />
-            <div className="space-y-px">
-              {resourceNav.map((item) => (
-                <TopLevelEntry key={item.href} item={item} />
-              ))}
-            </div>
-          </>
-        ) : null}
       </nav>
     </aside>
   );

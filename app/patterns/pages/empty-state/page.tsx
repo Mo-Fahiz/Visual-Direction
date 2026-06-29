@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { Breadcrumbs } from "@/components/docs/Breadcrumbs";
 import { DocImage } from "@/components/docs/DocImage";
 import { assetPath } from "@/lib/base-path";
 const PIMG = (f: string) => assetPath(`/images/Page_patterns/${f}`);
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function EmptyStatePatternPage() {
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={[{ label: "Components & patterns" }, { label: "Page patterns" }, { label: "Empty state" }]} />
       <PageHeader
         title="Empty state"
         description="The first impression of a surface that has no data yet. Centred illustration, one sentence of context, one action."

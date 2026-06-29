@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { Breadcrumbs } from "@/components/docs/Breadcrumbs";
 import { PageTable } from "@/components/docs/PageTable";
 import { DocImage } from "@/components/docs/DocImage";
 import { assetPath } from "@/lib/base-path";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function ErrorPatternPage() {
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={[{ label: "Components & patterns" }, { label: "Page patterns" }, { label: "Error page" }]} />
       <PageHeader
         title="Error page"
         description="Two patterns: 404 (we can't find the page) and 500 (something on our side broke). Friendly headline, brief explanation, link back to safety."

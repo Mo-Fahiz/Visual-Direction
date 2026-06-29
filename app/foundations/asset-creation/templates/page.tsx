@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { Breadcrumbs } from "@/components/docs/Breadcrumbs";
 import { Section } from "@/components/docs/Section";
 import { PageTable } from "@/components/docs/PageTable";
 import { DoDont } from "@/components/docs/DoDont";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function TemplatesPage() {
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={[{ label: "Media, content & voice" }, { label: "Asset creation", href: "/foundations/asset-creation" }, { label: "Templates" }]} />
       <PageHeader
         eyebrow="Foundation · Asset creation"
         title="Templates"
