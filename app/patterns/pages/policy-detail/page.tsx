@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
+import { Breadcrumbs } from "@/components/docs/Breadcrumbs";
 import { PageTable } from "@/components/docs/PageTable";
 import { DocImage } from "@/components/docs/DocImage";
 import { assetPath } from "@/lib/base-path";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function PolicyDetailPatternPage() {
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={[{ label: "Components & patterns" }, { label: "Page patterns" }, { label: "Policy detail" }]} />
       <PageHeader
         title="Policy detail"
         description="The home for a single policy. Summary at the top, sections grouped by intent, an action bar that's always reachable."

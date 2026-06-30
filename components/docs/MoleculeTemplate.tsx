@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { Breadcrumbs, type Crumb } from "@/components/docs/Breadcrumbs";
 import { CodeChip } from "@/components/docs/CodeChip";
 import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
@@ -29,6 +30,8 @@ export type RelatedLink = {
 export type MoleculePageProps = {
   title: string;
   description: string;
+  /** Defaults to "Components & patterns / {title}" when omitted. */
+  breadcrumb?: Crumb[];
   anatomyLabel: string;
   variants: MoleculeVariant[];
   props: MoleculeProp[];
@@ -47,8 +50,14 @@ export type MoleculePageProps = {
  * across the library so designers and engineers always know where to look.
  */
 export function MoleculePage(props: MoleculePageProps) {
+  const trail: Crumb[] =
+    props.breadcrumb ?? [
+      { label: "Components & patterns" },
+      { label: props.title },
+    ];
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={trail} />
       <PageHeader title={props.title} description={props.description} />
 
       <Section

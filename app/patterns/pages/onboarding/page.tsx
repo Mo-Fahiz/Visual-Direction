@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/docs/Breadcrumbs";
 import { DoDont } from "@/components/docs/DoDont";
 import { PageHeader } from "@/components/docs/PageHeader";
 import { PageTable } from "@/components/docs/PageTable";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function OnboardingPatternPage() {
   return (
     <article className="doc-prose">
+      <Breadcrumbs trail={[{ label: "Components & patterns" }, { label: "Page patterns" }, { label: "Onboarding" }]} />
       <PageHeader
         title="Onboarding flow"
         description="A linear stepper that asks one question at a time. Minimal chrome, one decision per screen, the user always knows where they are and what's next."

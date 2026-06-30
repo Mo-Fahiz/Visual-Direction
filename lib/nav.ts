@@ -1,6 +1,7 @@
 export type NavItem = {
   title: string;
-  href: string;
+  /** Optional. Groups without an href render as toggle-only headers. */
+  href?: string;
   /** Davies-style section index, e.g. "01". Optional; new IA drops indices. */
   index?: string;
   children?: NavItem[];
@@ -9,40 +10,55 @@ export type NavItem = {
 };
 
 /**
- * Primary navigation — matches the floating sidebar reference design.
- * About ACKO is the principles page. Design system groups the foundations
- * + atoms/molecules. Media collects imagery/iconography/motion/asset work.
+ * Primary navigation — Scope Audit IA.
+ *
+ * Six top-level groups, none with their own landing page. Clicking the
+ * group label only toggles expansion; only leaf items navigate.
  */
 export const primaryNav: NavItem[] = [
-  { title: "Getting started", href: "/getting-started" },
-  { title: "About ACKO", href: "/principles" },
   {
-    title: "Design system",
-    href: "/foundations",
-    defaultOpen: true,
+    title: "Brand identity",
     children: [
-      { title: "Logo", href: "/foundations/logo" },
-      { title: "Colour", href: "/foundations/color" },
-      { title: "Typography", href: "/foundations/typography" },
-      { title: "Layout and grid", href: "/foundations/layout" },
-      { title: "Spacing", href: "/foundations/spacing" },
-      { title: "Border radii", href: "/foundations/radii" },
-      { title: "Shadows", href: "/foundations/shadows" },
-      { title: "CTA hierarchy", href: "/foundations/cta-hierarchy" },
-      { title: "Atoms", href: "/ui-kit" },
+      { title: "About ACKO", href: "/principles" },
+      { title: "Logo usage", href: "/foundations/logo" },
+      { title: "Brand architecture", href: "/brand/architecture" },
+      { title: "Naming conventions", href: "/brand/naming" },
+      { title: "Co-branding", href: "/brand/co-branding" },
     ],
   },
   {
-    title: "Patterns",
-    href: "/patterns",
-    defaultOpen: false,
+    title: "Design system foundations",
+    defaultOpen: true,
     children: [
-      { title: "Card", href: "/patterns/card" },
-      { title: "Dialog", href: "/patterns/dialog" },
-      { title: "Dropdown", href: "/patterns/dropdown" },
-      { title: "Tabs", href: "/patterns/tabs" },
-      { title: "Toast", href: "/patterns/toast" },
-      { title: "Form field", href: "/patterns/form-field" },
+      { title: "Colour", href: "/foundations/color" },
+      { title: "Typography", href: "/foundations/typography" },
+      { title: "Spacing", href: "/foundations/spacing" },
+      { title: "Border radii", href: "/foundations/radii" },
+      { title: "Shadows", href: "/foundations/shadows" },
+      { title: "Motion", href: "/foundations/motion" },
+      { title: "Layout and grid", href: "/foundations/layout" },
+      { title: "Dark mode", href: "/foundations/color/dark-mode" },
+      { title: "Data visualisation", href: "/foundations/data-viz" },
+    ],
+  },
+  {
+    title: "Media, content & voice",
+    children: [
+      { title: "Imagery", href: "/foundations/imagery" },
+      { title: "Photography direction", href: "/foundations/imagery/photography" },
+      { title: "Iconography", href: "/foundations/iconography" },
+      { title: "Illustration", href: "/foundations/illustration" },
+      { title: "Asset creation", href: "/foundations/asset-creation" },
+      { title: "Voice and tone", href: "/foundations/voice" },
+    ],
+  },
+  {
+    title: "Components & patterns",
+    children: [
+      { title: "Atoms", href: "/ui-kit" },
+      { title: "Molecules", href: "/patterns" },
+      { title: "CTA hierarchy", href: "/foundations/cta-hierarchy" },
+      { title: "Forms", href: "/patterns/forms" },
       { title: "Onboarding", href: "/patterns/pages/onboarding" },
       { title: "Checkout", href: "/patterns/pages/checkout" },
       { title: "Policy detail", href: "/patterns/pages/policy-detail" },
@@ -52,25 +68,29 @@ export const primaryNav: NavItem[] = [
     ],
   },
   {
-    title: "Media",
-    href: "/foundations/imagery",
-    defaultOpen: false,
+    title: "Brand application",
     children: [
-      { title: "Imagery", href: "/foundations/imagery" },
-      { title: "Iconography", href: "/foundations/iconography" },
-      { title: "Motion", href: "/foundations/motion" },
-      { title: "Asset creation", href: "/foundations/asset-creation" },
+      { title: "Overview", href: "/foundations/brand-application" },
+      { title: "Social media", href: "/foundations/brand-application/social-media" },
+      { title: "Email & notifications", href: "/foundations/brand-application/email" },
+      { title: "Print & OOH", href: "/foundations/brand-application/print-ooh" },
+      { title: "Presentations", href: "/foundations/brand-application/presentations" },
     ],
   },
-  { title: "Brand application", href: "/foundations/brand-application" },
-  { title: "Voice and Tone", href: "/foundations/voice" },
-  { title: "Accessibility", href: "/foundations/accessibility" },
-  { title: "Resources", href: "/resources" },
+  {
+    title: "Governance & onboarding",
+    children: [
+      { title: "Getting started", href: "/getting-started" },
+      { title: "Accessibility", href: "/foundations/accessibility" },
+      { title: "Contributing", href: "/resources/contributing" },
+      { title: "Resources", href: "/resources" },
+      { title: "Changelog", href: "/resources/changelog" },
+    ],
+  },
 ];
 
 /** Kept for backwards compatibility with older imports; intentionally empty. */
 export const kitNav: NavItem[] = [];
 
-export const resourceNav: NavItem[] = [
-  { title: "Changelog", href: "/resources/changelog" },
-];
+/** Resource nav folded into Governance group; kept empty for legacy imports. */
+export const resourceNav: NavItem[] = [];
